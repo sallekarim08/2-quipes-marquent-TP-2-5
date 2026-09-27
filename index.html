@@ -18,19 +18,22 @@
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5}
-.wrap{max-width:880px;margin:0 auto;padding:32px 20px 60px}
-header{padding-bottom:20px;border-bottom:1px dashed var(--line);margin-bottom:22px}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px 60px}
+header{padding-bottom:20px;border-bottom:1px dashed var(--line);margin-bottom:18px}
 h1{font-size:clamp(26px,5vw,36px);margin:0 0 6px;font-weight:700}
-.sub{color:var(--muted);max-width:60ch;margin:0;font-size:14.5px}
+.sub{color:var(--muted);max-width:64ch;margin:0;font-size:14.5px}
 .updated{color:var(--muted);font-size:12px;margin-top:12px}
-.tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.search{width:100%;padding:10px 14px;margin-bottom:16px;background:var(--surface);border:1px solid var(--line);border-radius:8px;color:var(--text);font-family:var(--sans);font-size:14px}
+.search::placeholder{color:var(--muted)}
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
 .tab{background:var(--surface);border:1px solid var(--line);color:var(--muted);padding:7px 13px;border-radius:20px;font-family:var(--sans);font-size:12.5px;cursor:pointer}
 .tab.active{background:var(--gold);border-color:var(--gold);color:#1A1204;font-weight:500}
 .view{display:none}
 .view.active{display:block}
 .desc{color:var(--muted);font-size:13px;margin:0 0 14px}
+.leaguehead{color:var(--gold);font-size:12px;letter-spacing:.02em;margin:18px 0 8px}
+.leaguehead:first-child{margin-top:0}
 .row{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
-.row .lg{font-size:10px;color:var(--muted);width:70px;flex-shrink:0}
 .name{flex:1;min-width:0;font-size:14.5px}
 .stat{font-family:var(--mono);font-size:14px;background:var(--surface2);padding:4px 10px;border-radius:5px;white-space:nowrap}
 .tag{font-size:11px;padding:5px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-weight:500}
@@ -46,25 +49,32 @@ footer{margin-top:26px;color:var(--muted);font-size:12px;border-top:1px dashed v
 <div class="wrap">
 <header>
   <h1>BTTS Radar</h1>
-  <p class="sub">Profils d'équipes sur leurs 5 derniers matchs (5 championnats), et les rencontres à venir qui croisent ces profils.</p>
+  <p class="sub">Profils d'équipes sur leurs derniers matchs (9 championnats), et les rencontres à venir qui croisent ces profils.</p>
   <p class="updated" id="updated"></p>
 </header>
 
+<input type="text" class="search" id="search" placeholder="Rechercher une équipe...">
 <div class="tabs" id="tabs"></div>
 <div id="views"></div>
 
-<footer>Données : football-data.org, mises à jour toutes les 3 heures. « Beaucoup » = moyenne ≥ 1.6 but/match sur les 5 derniers matchs. « Toujours » = présent à chacun de ces matchs. Un indice de forme récente, pas une prédiction garantie.</footer>
+<footer>Données : football-data.org, mises à jour toutes les 3 heures. « Beaucoup » = moyenne ≥ 1.6 but/match. « Toujours » = présent à chaque match de l'échantillon (jusqu'à 20 derniers matchs, minimum 5). Un indice de forme récente, pas une prédiction garantie.</footer>
 </div>
 
 <script>
+const LEAGUE_ORDER = ["Premier League","La Liga","Serie A","Bundesliga","Ligue 1","Eredivisie","Primeira Liga","Brasileirão","Championship"];
+
 const TABS = [
-  {id:"attaque", label:"Attaques prolifiques", desc:"Équipes qui marquent beaucoup sur leurs 5 derniers matchs."},
-  {id:"defense", label:"Défenses fébriles", desc:"Équipes qui encaissent beaucoup sur leurs 5 derniers matchs."},
-  {id:"toujoursBut", label:"Toujours buteuses", desc:"Équipes qui ont marqué à chacun de leurs 5 derniers matchs."},
-  {id:"toujoursEnc", label:"Toujours perméables", desc:"Équipes qui ont encaissé à chacun de leurs 5 derniers matchs."},
-  {id:"attaqueVsDef", label:"Attaque vs défense fébrile", desc:"Matchs à venir : une équipe qui marque beaucoup affronte une équipe qui encaisse beaucoup."},
-  {id:"faceAFace", label:"Face-à-face garanti", desc:"Matchs à venir : une équipe toujours buteuse affronte une équipe toujours perméable."},
+  {id:"attaque", label:"Attaques prolifiques", desc:"Équipes qui marquent beaucoup sur leurs derniers matchs.", type:"team"},
+  {id:"defense", label:"Défenses fébriles", desc:"Équipes qui encaissent beaucoup sur leurs derniers matchs.", type:"team"},
+  {id:"toujoursBut", label:"Toujours buteuses", desc:"Équipes qui ont marqué à chacun de leurs derniers matchs.", type:"team"},
+  {id:"toujoursEnc", label:"Toujours perméables", desc:"Équipes qui ont encaissé à chacun de leurs derniers matchs.", type:"team"},
+  {id:"attaqueVsDef", label:"Attaque vs défense fébrile", desc:"Matchs à venir : une équipe qui marque beaucoup affronte une équipe qui encaisse beaucoup.", type:"match"},
+  {id:"faceAFace", label:"Face-à-face garanti", desc:"Matchs à venir : une équipe toujours buteuse affronte une équipe toujours perméable.", type:"match"},
+  {id:"bttsOver25", label:"BTTS + Plus de 2.5 buts", desc:"Matchs à venir où les deux équipes marquent probablement, avec plus de 2.5 buts au total.", type:"match"},
 ];
+
+let curTab = TABS[0].id, curSearch = "";
+let lists = {};
 
 document.getElementById('tabs').innerHTML = TABS.map((t,i)=>
   `<button class="tab${i===0?' active':''}" data-id="${t.id}">${t.label}</button>`).join('');
@@ -76,17 +86,44 @@ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
   document.getElementById('v-'+b.dataset.id).classList.add('active');
+  curTab = b.dataset.id; renderTab(curTab);
+});
+document.getElementById('search').addEventListener('input', (e)=>{
+  curSearch = e.target.value.trim().toLowerCase();
+  renderTab(curTab);
 });
 
+function groupByLeague(items){
+  const groups = {};
+  items.forEach(it => { (groups[it.league] ||= []).push(it); });
+  const order = [...LEAGUE_ORDER, ...Object.keys(groups).filter(l=>!LEAGUE_ORDER.includes(l))];
+  return order.filter(l=>groups[l]?.length).map(l=>[l, groups[l]]);
+}
 function teamRow(t, statLabel, statValue){
-  return `<div class="row"><span class="lg">${t.league}</span>
-    <div class="name">${t.name}</div>
-    <span class="stat">${statValue} ${statLabel}</span></div>`;
+  return `<div class="row"><div class="name">${t.name}</div><span class="stat">${statValue} ${statLabel}</span></div>`;
 }
 function matchRow(m, reasonHtml){
   const date = new Date(m.date).toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
   return `<div class="row matchup"><div class="teams"><span>${m.home} vs ${m.away}</span><span class="stat">${date}</span></div>
     <div class="tags">${reasonHtml}</div></div>`;
+}
+function vide(){ return '<p style="color:var(--muted)">Rien à afficher pour le moment.</p>'; }
+
+function renderTab(id){
+  const tab = TABS.find(t=>t.id===id);
+  let items = lists[id] || [];
+  if(curSearch){
+    items = tab.type==="team"
+      ? items.filter(t=>t.name.toLowerCase().includes(curSearch))
+      : items.filter(m=>(m.home+" "+m.away).toLowerCase().includes(curSearch));
+  }
+  const groups = groupByLeague(items);
+  const target = document.getElementById('list-'+id);
+  if(!groups.length){ target.innerHTML = vide(); return; }
+  target.innerHTML = groups.map(([league, rows])=>{
+    const rowsHtml = rows.map(it => tab.renderRow(it)).join('');
+    return `<div class="leaguehead">${league}</div>${rowsHtml}`;
+  }).join('');
 }
 
 async function init(){
@@ -98,46 +135,52 @@ async function init(){
     if(data.updatedAt) document.getElementById('updated').textContent =
       'Dernière mise à jour : ' + new Date(data.updatedAt).toLocaleString('fr-FR');
 
-    const attaque = teams.filter(t=>t.marqueBeaucoup).sort((a,b)=>b.avgScored-a.avgScored);
-    const defense = teams.filter(t=>t.encaisseBeaucoup).sort((a,b)=>b.avgConceded-a.avgConceded);
-    const toujoursBut = teams.filter(t=>t.marqueToujours);
-    const toujoursEnc = teams.filter(t=>t.encaisseToujours);
-    const attaqueVsDef = upcoming.filter(m=>m.attackVsLeaky);
-    const faceAFace = upcoming.filter(m=>m.certainGoal);
+    TABS.find(t=>t.id==="attaque").renderRow = t => teamRow(t,'buts/match',t.avgScored);
+    TABS.find(t=>t.id==="defense").renderRow = t => teamRow(t,'encaissés/match',t.avgConceded);
+    TABS.find(t=>t.id==="toujoursBut").renderRow = t => teamRow(t,`/${t.n} matchs`,t.n);
+    TABS.find(t=>t.id==="toujoursEnc").renderRow = t => teamRow(t,`/${t.n} matchs`,t.n);
 
-    document.getElementById('list-attaque').innerHTML =
-      attaque.map(t=>teamRow(t,'buts/match',t.avgScored)).join('') || vide();
-    document.getElementById('list-defense').innerHTML =
-      defense.map(t=>teamRow(t,'encaissés/match',t.avgConceded)).join('') || vide();
-    document.getElementById('list-toujoursBut').innerHTML =
-      toujoursBut.map(t=>teamRow(t,`/${t.n} matchs`,t.n)).join('') || vide();
-    document.getElementById('list-toujoursEnc').innerHTML =
-      toujoursEnc.map(t=>teamRow(t,`/${t.n} matchs`,t.n)).join('') || vide();
+    lists.attaque = teams.filter(t=>t.marqueBeaucoup).sort((a,b)=>b.avgScored-a.avgScored);
+    lists.defense = teams.filter(t=>t.encaisseBeaucoup).sort((a,b)=>b.avgConceded-a.avgConceded);
+    lists.toujoursBut = teams.filter(t=>t.marqueToujours);
+    lists.toujoursEnc = teams.filter(t=>t.encaisseToujours);
 
-    document.getElementById('list-attaqueVsDef').innerHTML = attaqueVsDef.map(m=>{
+    TABS.find(t=>t.id==="attaqueVsDef").renderRow = m => {
       const tags = [];
       if(m.home_p.marqueBeaucoup) tags.push(`<span class="tag gold">${m.home} marque beaucoup</span>`);
       if(m.away_p.encaisseBeaucoup) tags.push(`<span class="tag red">${m.away} encaisse beaucoup</span>`);
       if(m.away_p.marqueBeaucoup) tags.push(`<span class="tag gold">${m.away} marque beaucoup</span>`);
       if(m.home_p.encaisseBeaucoup) tags.push(`<span class="tag red">${m.home} encaisse beaucoup</span>`);
       return matchRow(m, tags.join(''));
-    }).join('') || vide();
-
-    document.getElementById('list-faceAFace').innerHTML = faceAFace.map(m=>{
+    };
+    TABS.find(t=>t.id==="faceAFace").renderRow = m => {
       const tags = [];
       if(m.home_p.marqueToujours) tags.push(`<span class="tag gold">${m.home} toujours buteuse</span>`);
       if(m.away_p.encaisseToujours) tags.push(`<span class="tag red">${m.away} toujours perméable</span>`);
       if(m.away_p.marqueToujours) tags.push(`<span class="tag gold">${m.away} toujours buteuse</span>`);
       if(m.home_p.encaisseToujours) tags.push(`<span class="tag red">${m.home} toujours perméable</span>`);
       return matchRow(m, tags.join(''));
-    }).join('') || vide();
+    };
+    TABS.find(t=>t.id==="bttsOver25").renderRow = m => {
+      const avgGoals = Math.round(((m.home_p.avgGoalsMatch + m.away_p.avgGoalsMatch)/2)*10)/10;
+      const tags = [
+        `<span class="tag gold">${m.home} marque ${m.home_p.pctScored}%</span>`,
+        `<span class="tag gold">${m.away} marque ${m.away_p.pctScored}%</span>`,
+        `<span class="tag red">~${avgGoals} buts/match en moyenne</span>`,
+      ];
+      return matchRow(m, tags.join(''));
+    };
 
+    lists.attaqueVsDef = upcoming.filter(m=>m.attackVsLeaky);
+    lists.faceAFace = upcoming.filter(m=>m.certainGoal);
+    lists.bttsOver25 = upcoming.filter(m=>m.bttsOver25);
+
+    renderTab(curTab);
   }catch(e){
     document.getElementById('views').innerHTML =
       '<p style="color:var(--muted)">Données indisponibles pour le moment. Le prochain passage de la GitHub Action va les générer.</p>';
   }
 }
-function vide(){ return '<p style="color:var(--muted)">Aucune équipe ne correspond pour le moment.</p>'; }
 init();
 </script>
 </body>
