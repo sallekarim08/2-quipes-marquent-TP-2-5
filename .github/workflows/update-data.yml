@@ -1,0 +1,60 @@
+name: Update BTTS data
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"   # toutes les 3 heures
+  workflow_dispatch:         # bouton "Run workflow" manuel
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Générer data/matches.json
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: node scripts/build-data.mjs
+
+      - name: Commit les données si elles ont changé
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/matches.json
+          git diff --cached --quiet && echo "Rien de nouveau" || git commit -m "Données du $(date +'%d/%m/%Y %H:%M')"
+          git push
+
+      - name: Préparer le dossier de publication
+        run: |
+          mkdir -p _site
+          cp index.html _site/
+          cp -r data _site/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
