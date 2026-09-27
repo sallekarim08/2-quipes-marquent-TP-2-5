@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BTTS Radar — Les deux équipes marquent-elles ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E3B2C; --surface:#123F30; --surface2:#16483A; --line:#2C6B52;
+  --text:#EDF3EE; --muted:#9FC3AF; --gold:#D8AE4E; --gold-dim:rgba(216,174,78,.16);
+  --grey:#5E7E6D; --grey-dim:rgba(94,126,109,.18);
+  --sans:'Space Grotesk',system-ui,sans-serif; --mono:'SF Mono',Consolas,monospace;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:32px 20px 60px}
+header{padding-bottom:24px;border-bottom:1px dashed var(--line);margin-bottom:28px}
+h1{font-size:clamp(28px,5vw,40px);margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+.sub{color:var(--muted);max-width:56ch;margin:0 0 22px;font-size:15px}
+.stat-row{display:flex;gap:28px;flex-wrap:wrap}
+.stat b{display:block;font-family:var(--mono);font-size:34px;color:var(--gold);line-height:1}
+.stat span{color:var(--muted);font-size:13px}
+.updated{color:var(--grey);font-size:12px;margin-top:14px}
+.tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+.tab{background:none;border:1px solid var(--line);color:var(--muted);padding:7px 14px;border-radius:20px;font-family:var(--sans);font-size:13px;cursor:pointer}
+.tab.active{background:var(--gold);border-color:var(--gold);color:#1A1204;font-weight:500}
+.leaguebar{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+.lg{background:var(--surface);border:1px solid var(--line);color:var(--text);padding:5px 11px;border-radius:6px;font-size:12px;cursor:pointer;font-family:var(--sans)}
+.lg.active{background:var(--surface2);border-color:var(--gold);color:var(--gold)}
+.view{display:none}
+.view.active{display:block}
+.match{display:flex;align-items:center;gap:14px;padding:13px 14px;background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:8px}
+.match .lgtag{font-size:10px;color:var(--muted);width:70px;flex-shrink:0}
+.teams{flex:1;min-width:0}
+.teams .t{font-size:14.5px}
+.score{font-family:var(--mono);font-size:15px;background:var(--surface2);padding:4px 10px;border-radius:5px;white-space:nowrap}
+.badge{font-size:11px;padding:5px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.badge.yes{background:var(--gold-dim);color:var(--gold)}
+.badge.no{background:var(--grey-dim);color:var(--grey)}
+.tend{font-size:11px;padding:5px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;font-weight:500}
+.tend.forte{background:var(--gold-dim);color:var(--gold)}
+.tend.moyenne{background:rgba(159,195,175,.15);color:var(--muted)}
+.tend.faible{background:var(--grey-dim);color:var(--grey)}
+footer{margin-top:30px;color:var(--grey);font-size:12px;border-top:1px dashed var(--line);padding-top:16px}
+@media(max-width:520px){.match{flex-wrap:wrap}.teams{width:100%;order:1}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>BTTS Radar</h1>
+  <p class="sub">Analyse des matchs récents dans 5 championnats : est-ce que les deux équipes ont marqué, et combien de buts au total ? Puis un repérage des matchs à venir entre équipes en tendance BTTS.</p>
+  <div class="stat-row">
+    <div class="stat"><b id="pct">—</b><span>des matchs récents avec BTTS</span></div>
+    <div class="stat"><b id="cnt">—</b><span>matchs analysés</span></div>
+    <div class="stat"><b id="upn">—</b><span>matchs à venir en tendance forte</span></div>
+  </div>
+  <p class="updated" id="updated"></p>
+</header>
+
+<div class="tabs">
+  <button class="tab active" data-view="recent">Matchs récents</button>
+  <button class="tab" data-view="upcoming">Prochains matchs à suivre</button>
+</div>
+<div class="leaguebar" id="leaguebar"></div>
+
+<div class="view active" id="recent"></div>
+<div class="view" id="upcoming"></div>
+
+<footer>Données : football-data.org, mises à jour automatiquement toutes les 3 heures par une GitHub Action. La « tendance BTTS » d'un match à venir se base sur le dernier match connu de chaque équipe — un indice, pas une prédiction garantie.</footer>
+</div>
+
+<script>
+let finished = [], upcoming = [], curLeague = "Toutes", curView = "recent";
+
+function renderRecent(){
+  const rows = finished.filter(m=>curLeague==="Toutes"||m.league===curLeague);
+  document.getElementById('recent').innerHTML = rows.map(m=>{
+    const btts = m.hs>0 && m.as>0;
+    return `<div class="match"><span class="lgtag">${m.league}</span>
+      <div class="teams"><div class="t">${m.home} vs ${m.away}</div></div>
+      <span class="score">${m.hs} – ${m.as}</span>
+      <span class="badge ${btts?'yes':'no'}">${btts?`BTTS · ${m.hs+m.as} buts`:'Pas de BTTS'}</span></div>`;
+  }).join('') || '<p style="color:var(--muted)">Aucun match.</p>';
+}
+function renderUpcoming(){
+  const rows = upcoming.filter(m=>curLeague==="Toutes"||m.league===curLeague)
+    .map(m=>({m, score:(m.homeBtts??0)+(m.awayBtts??0)}))
+    .sort((a,b)=>b.score-a.score);
+  document.getElementById('upcoming').innerHTML = rows.map(({m,score})=>{
+    const label = score===2?'forte':score===1?'moyenne':'faible';
+    const text = score===2?'Tendance forte BTTS':score===1?'Tendance moyenne':'Tendance faible';
+    const date = new Date(m.date).toLocaleDateString('fr-FR',{day:'numeric',month:'short'});
+    return `<div class="match"><span class="lgtag">${m.league}</span>
+      <div class="teams"><div class="t">${m.home} vs ${m.away}</div></div>
+      <span class="score" style="opacity:.6">${date}</span>
+      <span class="tend ${label}">${text}</span></div>`;
+  }).join('') || '<p style="color:var(--muted)">Aucun match.</p>';
+}
+function renderAll(){ renderRecent(); renderUpcoming(); }
+
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); curView=b.dataset.view;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(curView).classList.add('active');
+});
+
+async function init(){
+  try{
+    const res = await fetch('./data/matches.json', {cache:'no-store'});
+    const data = await res.json();
+    finished = data.finished || [];
+    upcoming = data.upcoming || [];
+    document.getElementById('pct').textContent = (data.stats?.bttsPct ?? '—') + '%';
+    document.getElementById('cnt').textContent = data.stats?.total ?? '—';
+    document.getElementById('upn').textContent = upcoming.filter(m=>(m.homeBtts??0)+(m.awayBtts??0)===2).length;
+    if(data.updatedAt){
+      document.getElementById('updated').textContent = 'Dernière mise à jour : ' + new Date(data.updatedAt).toLocaleString('fr-FR');
+    }
+    const leagues = ["Toutes", ...new Set(finished.map(m=>m.league))];
+    document.getElementById('leaguebar').innerHTML = leagues.map((l,i)=>
+      `<button class="lg${i===0?' active':''}" data-l="${l}">${l}</button>`).join('');
+    document.querySelectorAll('.lg').forEach(b=>b.onclick=()=>{
+      document.querySelectorAll('.lg').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active'); curLeague=b.dataset.l; renderAll();
+    });
+    renderAll();
+  }catch(e){
+    document.getElementById('recent').innerHTML = '<p style="color:var(--muted)">Données indisponibles pour le moment (data/matches.json introuvable). Le premier passage de la GitHub Action va le générer.</p>';
+  }
+}
+init();
+</script>
+</body>
+</html>
