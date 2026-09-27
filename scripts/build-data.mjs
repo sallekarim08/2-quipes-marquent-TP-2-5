@@ -1,8 +1,6 @@
 // scripts/build-data.mjs
-// Analyse les 5 derniers matchs de chaque équipe pour repérer :
-// - les équipes qui marquent/encaissent beaucoup
-// - les équipes qui marquent/encaissent à tous les coups
-// - les matchs à venir qui croisent ces profils
+// Analyse jusqu'à 20 des derniers matchs de chaque équipe, sur 9 championnats,
+// pour repérer les profils d'attaque/défense et les matchs à venir qui les croisent.
 //
 // Nécessite la variable d'environnement FOOTBALL_DATA_TOKEN
 
@@ -14,17 +12,24 @@ if (!TOKEN) {
   process.exit(1);
 }
 
+// Les 9 championnats du plan gratuit football-data.org
 const COMPETITIONS = {
   PL: "Premier League",
   PD: "La Liga",
   SA: "Serie A",
   BL1: "Bundesliga",
   FL1: "Ligue 1",
+  DED: "Eredivisie",
+  PPL: "Primeira Liga",
+  BSA: "Brasileirão",
+  ELC: "Championship",
 };
 
-const LAST_N = 5;          // nombre de matchs récents pris en compte par équipe
-const MIN_MATCHES = 3;     // échantillon minimum pour être pris en compte
-const SEUIL_BEAUCOUP = 1.6; // moyenne de buts / match pour "marque/encaisse beaucoup"
+const MAX_MATCHES = 20;     // on prend jusqu'à 20 matchs récents par équipe
+const MIN_MATCHES = 5;      // échantillon minimum pour être pris en compte
+const SEUIL_BEAUCOUP = 1.6; // moyenne de buts/match pour "beaucoup"
+const SEUIL_PCT = 60;       // % de matchs où l'équipe marque/encaisse, pour BTTS probable
+const SEUIL_OVER = 2.5;     // seuil de buts totaux "plus de 2.5"
 
 const BASE = "https://api.football-data.org/v4";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -34,16 +39,14 @@ async function fetchJson(url) {
   if (!res.ok) throw new Error(`${url} -> ${res.status} ${await res.text()}`);
   return res.json();
 }
-
 function dateStr(d) { return d.toISOString().slice(0, 10); }
 
 async function main() {
   const today = new Date();
-  const past = new Date(today); past.setDate(past.getDate() - 45);
+  const past = new Date(today); past.setDate(past.getDate() - 150); // large fenêtre pour avoir jusqu'à 20 matchs
   const future = new Date(today); future.setDate(future.getDate() + 14);
 
-  // matches[teamName] = { league, history: [{scored, conceded, date}] }
-  const matches = {};
+  const matches = {}; // matches[team] = { league, history: [{scored, conceded, date}] }
   const upcomingRaw = [];
 
   const addMatch = (team, league, scored, conceded, date) => {
@@ -79,19 +82,19 @@ async function main() {
     await sleep(6500);
   }
 
-  // --- calcule le profil de chaque équipe ---
+  // --- profil de chaque équipe ---
   const profiles = {};
   for (const [team, { league, history }] of Object.entries(matches)) {
     const recent = history
       .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, LAST_N);
+      .slice(0, MAX_MATCHES);
     const n = recent.length;
     if (n < MIN_MATCHES) continue;
 
     const avgScored = recent.reduce((s, m) => s + m.scored, 0) / n;
     const avgConceded = recent.reduce((s, m) => s + m.conceded, 0) / n;
-    const marqueToujours = recent.every((m) => m.scored > 0);
-    const encaisseToujours = recent.every((m) => m.conceded > 0);
+    const scoredCount = recent.filter((m) => m.scored > 0).length;
+    const concededCount = recent.filter((m) => m.conceded > 0).length;
 
     profiles[team] = {
       name: team,
@@ -99,14 +102,17 @@ async function main() {
       n,
       avgScored: Math.round(avgScored * 100) / 100,
       avgConceded: Math.round(avgConceded * 100) / 100,
+      avgGoalsMatch: Math.round((avgScored + avgConceded) * 100) / 100,
+      pctScored: Math.round((scoredCount / n) * 100),
+      pctConceded: Math.round((concededCount / n) * 100),
       marqueBeaucoup: avgScored >= SEUIL_BEAUCOUP,
       encaisseBeaucoup: avgConceded >= SEUIL_BEAUCOUP,
-      marqueToujours,
-      encaisseToujours,
+      marqueToujours: scoredCount === n,
+      encaisseToujours: concededCount === n,
     };
   }
 
-  // --- matchs à venir enrichis des profils des deux équipes ---
+  // --- matchs à venir enrichis ---
   const upcoming = upcomingRaw
     .filter((m) => profiles[m.home] && profiles[m.away])
     .map((m) => {
@@ -115,11 +121,12 @@ async function main() {
         league: m.league, home: m.home, away: m.away, date: m.date,
         home_p: h, away_p: a,
         attackVsLeaky:
-          (h.marqueBeaucoup && a.encaisseBeaucoup) ||
-          (a.marqueBeaucoup && h.encaisseBeaucoup),
+          (h.marqueBeaucoup && a.encaisseBeaucoup) || (a.marqueBeaucoup && h.encaisseBeaucoup),
         certainGoal:
-          (h.marqueToujours && a.encaisseToujours) ||
-          (a.marqueToujours && h.encaisseToujours),
+          (h.marqueToujours && a.encaisseToujours) || (a.marqueToujours && h.encaisseToujours),
+        bttsOver25:
+          h.pctScored >= SEUIL_PCT && a.pctScored >= SEUIL_PCT &&
+          (h.avgGoalsMatch + a.avgGoalsMatch) / 2 >= SEUIL_OVER,
       };
     });
 
@@ -130,7 +137,7 @@ async function main() {
   };
 
   await writeFile("data/matches.json", JSON.stringify(payload, null, 2));
-  console.log(`OK: ${Object.keys(profiles).length} équipes profilées, ${upcoming.length} matchs à venir croisés.`);
+  console.log(`OK: ${Object.keys(profiles).length} équipes, ${upcoming.length} matchs à venir croisés.`);
 }
 
 main().catch((err) => { console.error(err); process.exit(1); });
