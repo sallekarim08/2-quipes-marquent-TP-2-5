@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Analyse de match — BTTS Radar</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<style>
+:root{--bg:#0E3B2C;--surface:#123F30;--surface2:#16483A;--line:#2C6B52;--text:#EDF3EE;--muted:#9FC3AF;--gold:#D8AE4E;--red:#D9765A;--sans:'Space Grotesk',system-ui,sans-serif;--mono:'SF Mono',Consolas,monospace}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+.wrap{max-width:900px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:clamp(24px,5vw,34px);margin:0 0 4px}
+h2{font-size:17px;color:var(--gold);margin:30px 0 10px;border-top:1px dashed var(--line);padding-top:18px}
+a{color:var(--gold)}
+.muted{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px}
+input,select{background:var(--surface2);border:1px solid var(--line);color:var(--text);border-radius:6px;padding:7px 9px;font-family:var(--sans);font-size:14px;max-width:100%}
+input[type=text]{width:100%;margin-bottom:8px}
+input[type=file]{width:100%;border:1px dashed var(--line);padding:14px;background:none}
+button{background:var(--gold);color:#1A1204;border:0;border-radius:8px;padding:9px 14px;font-family:var(--sans);font-weight:500;font-size:14px;cursor:pointer;margin:8px 6px 0 0}
+button.sec{background:var(--surface2);color:var(--text);border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:5px 6px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:400}
+.scroll{overflow-x:auto}
+td input{width:100%;margin:0;padding:5px}
+td input[type=number]{width:52px}
+tr.flag{background:rgba(217,118,90,.18)}
+.badge{display:inline-block;padding:4px 11px;border-radius:20px;font-size:12px;font-weight:500}
+.ok{background:rgba(216,174,78,.2);color:var(--gold)}.warn{background:rgba(217,118,90,.2);color:var(--red)}
+.bar{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:13px}
+.bar .l{width:150px;flex-shrink:0}.bar .b{flex:1;background:var(--surface2);border-radius:5px;height:14px;overflow:hidden}
+.bar .b i{display:block;height:100%;background:var(--gold)}.bar .v{font-family:var(--mono);width:44px;text-align:right}
+.cmp{display:flex;height:10px;gap:3px;margin:2px 0 8px}.cmp i{display:block;border-radius:4px}
+.txt li{margin-bottom:6px;font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a href="index.html" class="muted">← Retour aux profils</a>
+<h1>Analyse d'un match par captures</h1>
+<p class="muted">Importez l'historique récent de chaque équipe (capture d'écran), vérifiez les données lues, puis lancez l'analyse. Rien n'est envoyé sur un serveur : tout se passe dans votre navigateur.</p>
+
+<h2>1. Importer les captures</h2>
+<div class="grid">
+  <div class="card"><b>ÉQUIPE A</b>
+    <input type="text" id="nA" placeholder="Nom de l'équipe A (facultatif, sinon détecté)">
+    <input type="file" id="fA" accept="image/jpeg,image/png,image/webp"></div>
+  <div class="card"><b>ÉQUIPE B</b>
+    <input type="text" id="nB" placeholder="Nom de l'équipe B (facultatif, sinon détecté)">
+    <input type="file" id="fB" accept="image/jpeg,image/png,image/webp"></div>
+</div>
+<p style="margin:12px 0 0">Lieu du match :
+  <select id="home"><option value="?">Non précisé (aucun avantage domicile)</option><option value="A">A joue à domicile</option><option value="B">B joue à domicile</option></select></p>
+<button id="read">Lire les captures</button><button class="sec" id="manual">Saisir à la main</button>
+<p class="muted" id="prog"></p>
+
+<h2>2. Vérifier et corriger les matchs</h2>
+<p class="muted">Du plus récent (en haut) au plus ancien. BM = buts marqués par l'équipe, BE = buts encaissés. Les lignes rouges sont incertaines : corrigez-les puis validez.</p>
+<div class="grid">
+  <div class="card"><b id="hA">Équipe A</b><div class="scroll" id="tA"></div>
+    <button class="sec" data-add="A">+ Match</button><button class="sec" data-rev="A">Inverser l'ordre</button></div>
+  <div class="card"><b id="hB">Équipe B</b><div class="scroll" id="tB"></div>
+    <button class="sec" data-add="B">+ Match</button><button class="sec" data-rev="B">Inverser l'ordre</button></div>
+</div>
+<button id="confirm" class="sec">Confirmer les lignes signalées</button><button id="go">Valider et analyser</button>
+
+<div id="out"></div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
+const f2=x=>x.toFixed(2).replace('.',','), P=x=>Math.round(x*100);
+const S={A:{name:'',rows:[],file:null},B:{name:'',rows:[],file:null}};
+const PRIOR=1.35, K=5;
+
+// ---------- OCR + lecture ----------
+function parse(text,k){
+  const raw=[];let cur='';
+  for(let l of text.split('\n')){
+    l=l.trim();if(!l)continue;
+    const d=l.match(/\b(\d{1,2}[\/.]\d{1,2}(?:[\/.]\d{2,4})?)\.?(?=\s|$)/);
+    if(d){cur=d[1];l=l.replace(d[0],' ');}
+    const m=l.match(/^(.*?)\b(\d{1,2})\s*[-–—]\s*(\d{1,2})\b(.*)$/);
+    if(!m||+m[2]>15||+m[3]>15)continue;
+    const clean=t=>t.replace(/[^\p{L}\p{N} '.&-]/gu,' ').replace(/\s+/g,' ').trim();
+    raw.push({date:cur,L:clean(m[1]),R:clean(m[4]),a:+m[2],b:+m[3]});
+  }
+  let name=S[k].name.trim();
+  if(!name){
+    const c={};raw.forEach(r=>[r.L,r.R].forEach(t=>{const n=norm(t);if(n)c[n]=(c[n]||0)+1}));
+    const top=Object.entries(c).sort((x,y)=>y[1]-x[1])[0];
+    if(top&&top[1]>=2){name=raw.flatMap(r=>[r.L,r.R]).find(t=>norm(t)===top[0]);S[k].name=name;$('#n'+k).value=name;}
+  }
+  const nn=norm(name);
+  const match=s=>nn&&norm(s)&&(norm(s).includes(nn)||nn.includes(norm(s)));
+  return raw.map(r=>{
+    const isL=match(r.L),isR=!isL&&match(r.R),opp=isR?r.L:r.R;
+    return {date:r.date,opp,venue:(isL||isR)?(isR?'E':'D'):'?',gf:isR?r.b:r.a,ga:isR?r.a:r.b,flag:!(isL||isR)||!opp};
+  });
+}
+$('#read').onclick=async()=>{
+  if(!S.A.file&&!S.B.file){$('#prog').textContent='Importez au moins une capture.';return}
+  try{
+    for(const k of ['A','B']){
+      if(!S[k].file)continue;
+      $('#prog').textContent=`Capture ${k} : préparation…`;
+      const {data}=await Tesseract.recognize(S[k].file,'fra+eng',{logger:m=>{if(m.status==='recognizing text')$('#prog').textContent=`Capture ${k} : ${Math.round(m.progress*100)} %`}});
+      S[k].rows=parse(data.text,k);
+    }
+    const nb=S.A.rows.length+S.B.rows.length;
+    $('#prog').textContent=nb?`Lecture terminée (${nb} matchs détectés). Vérifiez les tableaux.`:'Aucun score détecté : recadrez la capture sur la liste des matchs ou saisissez à la main.';
+    render();
+  }catch(e){$('#prog').textContent='Erreur de lecture : '+e.message}
+};
+$('#manual').onclick=()=>{['A','B'].forEach(k=>{if(!S[k].rows.length)S[k].rows.push({date:'',opp:'',venue:'?',gf:0,ga:0,flag:false})});render()};
+$('#fA').onchange=e=>S.A.file=e.target.files[0];
+$('#fB').onchange=e=>S.B.file=e.target.files[0];
+
+// ---------- tableaux modifiables ----------
+function render(){
+  ['A','B'].forEach(k=>{
+    $('#h'+k).textContent=S[k].name||'Équipe '+k;
+    $('#t'+k).innerHTML=`<table><thead><tr><th>Date</th><th>Adversaire</th><th>Lieu</th><th>BM</th><th>BE</th><th></th></tr></thead><tbody>`+
+    S[k].rows.map((r,i)=>`<tr class="${r.flag?'flag':''}">
+      <td><input data-k="${k}" data-i="${i}" data-f="date" value="${esc(r.date)}" size="6"></td>
+      <td><input data-k="${k}" data-i="${i}" data-f="opp" value="${esc(r.opp)}"></td>
+      <td><select data-k="${k}" data-i="${i}" data-f="venue">${['D','E','?'].map(v=>`<option ${r.venue===v?'selected':''}>${v}</option>`).join('')}</select></td>
+      <td><input type="number" min="0" data-k="${k}" data-i="${i}" data-f="gf" value="${r.gf}"></td>
+      <td><input type="number" min="0" data-k="${k}" data-i="${i}" data-f="ga" value="${r.ga}"></td>
+      <td><button class="sec" data-del="${k},${i}">✕</button></td></tr>`).join('')+`</tbody></table>`;
+  });
+}
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.id==='nA'||t.id==='nB'){S[t.id[1]].name=t.value;$('#h'+t.id[1]).textContent=t.value||'Équipe '+t.id[1];return}
+  if(!t.dataset.f)return;
+  const r=S[t.dataset.k].rows[t.dataset.i],f=t.dataset.f;
+  r[f]=(f==='gf'||f==='ga')?Math.max(0,parseInt(t.value)||0):t.value;
+  r.flag=false;t.closest('tr').classList.remove('flag');
+});
+document.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.dataset.del){const[k,i]=t.dataset.del.split(',');S[k].rows.splice(+i,1);render()}
+  if(t.dataset.add){S[t.dataset.add].rows.push({date:'',opp:'',venue:'?',gf:0,ga:0,flag:false});render()}
+  if(t.dataset.rev){S[t.dataset.rev].rows.reverse();render()}
+});
+$('#confirm').onclick=()=>{['A','B'].forEach(k=>S[k].rows.forEach(r=>r.flag=false));render()};
+
+// ---------- statistiques et séries ----------
+function stats(rows){
+  const n=rows.length;if(!n)return null;
+  const c=p=>rows.filter(p).length,gf=rows.reduce((s,r)=>s+r.gf,0),ga=rows.reduce((s,r)=>s+r.ga,0);
+  return {n,w:c(r=>r.gf>r.ga),d:c(r=>r.gf===r.ga),l:c(r=>r.gf<r.ga),gf,ga,agf:gf/n,aga:ga/n,diff:gf-ga,
+    sc:c(r=>r.gf>0),ns:c(r=>r.gf===0),cs:c(r=>r.ga===0),btts:c(r=>r.gf>0&&r.ga>0),
+    o15:c(r=>r.gf+r.ga>1.5),o25:c(r=>r.gf+r.ga>2.5),u25:c(r=>r.gf+r.ga<2.5),o35:c(r=>r.gf+r.ga>3.5)};
+}
+function streak(rows,p){let cur=0;while(cur<rows.length&&p(rows[cur]))cur++;let best=0,run=0;for(const r of rows){if(p(r)){run++;best=Math.max(best,run)}else run=0}return[cur,best]}
+const STREAKS=[["Victoires",r=>r.gf>r.ga],["Sans défaite",r=>r.gf>=r.ga],["Sans victoire",r=>r.gf<=r.ga],["Sans match nul",r=>r.gf!==r.ga],
+["≥1 but marqué",r=>r.gf>=1],["≥2 buts marqués",r=>r.gf>=2],["≥3 buts marqués",r=>r.gf>=3],
+["≥1 but encaissé",r=>r.ga>=1],["≥2 buts encaissés",r=>r.ga>=2],["Sans encaisser",r=>r.ga===0],
+["+1,5 buts (total)",r=>r.gf+r.ga>1.5],["+2,5 buts (total)",r=>r.gf+r.ga>2.5],["+3,5 buts (total)",r=>r.gf+r.ga>3.5],["−2,5 buts (total)",r=>r.gf+r.ga<2.5]];
+
+// ---------- modèle de Poisson ----------
+function predict(a,b,home){
+  const shr=(v,n)=>{const w=n/(n+K);return w*v+(1-w)*PRIOR};
+  let la=(shr(a.agf,a.n)+shr(b.aga,b.n))/2,lb=(shr(b.agf,b.n)+shr(a.aga,a.n))/2;
+  if(home==='A'){la*=1.1;lb*=.9}else if(home==='B'){lb*=1.1;la*=.9}
+  const N=11,pm=l=>{const x=[Math.exp(-l)];for(let k=1;k<N;k++)x.push(x[k-1]*l/k);return x};
+  const pa=pm(la),pb=pm(lb),g=[];let tot=0;
+  for(let i=0;i<N;i++){g[i]=[];for(let j=0;j<N;j++){g[i][j]=pa[i]*pb[j];tot+=g[i][j]}}
+  const q=f=>{let s=0;for(let i=0;i<N;i++)for(let j=0;j<N;j++)if(f(i,j))s+=g[i][j];return s/tot};
+  const sc=[];for(let i=0;i<N;i++)for(let j=0;j<N;j++)sc.push([i,j,g[i][j]/tot]);
+  sc.sort((x,y)=>y[2]-x[2]);
+  return {la,lb,a:q((i,j)=>i>j),d:q((i,j)=>i===j),b:q((i,j)=>i<j),btts:q((i,j)=>i>0&&j>0),
+    ov:t=>q((i,j)=>i+j>t),a0:q(i=>i===0),b0:q((i,j)=>j===0),m2:q((i,j)=>Math.abs(i-j)>=2),p00:g[0][0]/tot,top:sc.slice(0,6)};
+}
+
+// ---------- affichage du rapport ----------
+const bar=(l,v,max=100)=>`<div class="bar"><span class="l">${l}</span><span class="b"><i style="width:${Math.min(100,v/max*100)}%"></i></span><span class="v">${Math.round(v)}${max===100?' %':''}</span></div>`;
+function cmp(l,x,y,fmt=f2){const m=(x+y)||1;return `<div class="muted" style="display:flex;justify-content:space-between"><span>${fmt(x)}</span><span>${l}</span><span>${fmt(y)}</span></div><div class="cmp"><i style="width:${x/m*100}%;background:var(--gold)"></i><i style="width:${y/m*100}%;background:var(--muted)"></i></div>`}
+function statBlock(s,rows,name){
+  const t=[["Matchs analysés",s.n],["Victoires / Nuls / Défaites",`${s.w} / ${s.d} / ${s.l} (${P(s.w/s.n)} % / ${P(s.d/s.n)} % / ${P(s.l/s.n)} %)`],
+  ["Buts marqués / encaissés",`${s.gf} / ${s.ga} (diff. ${s.diff>0?'+':''}${s.diff})`],["Moyenne marqués / encaissés",`${f2(s.agf)} / ${f2(s.aga)}`],
+  ["Matchs avec but marqué / sans",`${s.sc} / ${s.ns}`],["Matchs sans encaisser",s.cs],["Les deux équipes ont marqué",s.btts],
+  ["+1,5 / +2,5 / −2,5 / +3,5 buts",`${s.o15} / ${s.o25} / ${s.u25} / ${s.o35}`]];
+  const w=[5,8,10].filter(x=>s.n>=x).map(x=>{const y=stats(rows.slice(0,x));return `<tr><td>${x} derniers</td><td>${y.w}V ${y.d}N ${y.l}D · ${f2(y.agf)} BM · ${f2(y.aga)} BE · BTTS ${y.btts}/${x} · +2,5 : ${y.o25}/${x}</td></tr>`}).join('');
+  return `<div class="card"><b>${esc(name)}</b><table>${t.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}${w}</table></div>`;
+}
+$('#go').onclick=()=>{
+  const a=stats(S.A.rows),b=stats(S.B.rows),nA=S.A.name||'Équipe A',nB=S.B.name||'Équipe B',home=$('#home').value;
+  const flags=S.A.rows.concat(S.B.rows).filter(r=>r.flag).length,n1=S.A.rows.length,n2=S.B.rows.length;
+  let status,cls='warn';
+  if(!a||!b||Math.min(n1,n2)<5)status='Données insuffisantes';
+  else if(flags)status='Données incertaines';
+  else if(Math.min(n1,n2)<8)status='Données partiellement validées';
+  else{status='Données validées';cls='ok'}
+  let h=`<h2>Identification du match</h2><div class="card"><b>${esc(nA)}</b> vs <b>${esc(nB)}</b><br>
+   <span class="muted">${home==='A'?nA+' à domicile':home==='B'?nB+' à domicile':'Domicile/extérieur non précisé : aucun avantage domicile appliqué'}</span><br>
+   <span class="muted">Matchs extraits : ${n1} (A) · ${n2} (B) · lignes encore signalées : ${flags}</span><br><span class="badge ${cls}">${status}</span></div>`;
+  if(!a||!b){$('#out').innerHTML=h+'<p class="muted">Il faut des matchs pour les deux équipes.</p>';return}
+  h+=`<h2>Historique et statistiques</h2><div class="grid">${statBlock(a,S.A.rows,nA)}${statBlock(b,S.B.rows,nB)}</div>`;
+  h+=`<h2>Comparaison des équipes</h2><div class="card"><div class="muted" style="display:flex;justify-content:space-between"><b style="color:var(--gold)">${esc(nA)}</b><b>${esc(nB)}</b></div>
+   ${cmp('% victoires',P(a.w/a.n),P(b.w/b.n),x=>x+' %')}${cmp('Buts marqués / match',a.agf,b.agf)}${cmp('Buts encaissés / match',a.aga,b.aga)}
+   ${cmp('% matchs avec but marqué',P(a.sc/a.n),P(b.sc/b.n),x=>x+' %')}${cmp('% matchs +2,5 buts',P(a.o25/a.n),P(b.o25/b.n),x=>x+' %')}
+   <p class="muted">Comparaison descriptive : de meilleures statistiques sur une catégorie ne signifient pas une victoire assurée. Le niveau des adversaires rencontrés n'est pas pris en compte.</p></div>`;
+  h+=`<h2>Séries statistiques</h2><div class="card scroll"><table><thead><tr><th>Série</th><th>${esc(nA)} : actuelle (max)</th><th>${esc(nB)} : actuelle (max)</th></tr></thead><tbody>`+
+   STREAKS.map(([l,p])=>{const x=streak(S.A.rows,p),y=streak(S.B.rows,p);return `<tr><td>${l}</td><td>${x[0]} <small class="muted">(max ${x[1]})</small></td><td>${y[0]} <small class="muted">(max ${y[1]})</small></td></tr>`}).join('')+
+   `</tbody></table><p class="muted">Séries actuelles comptées depuis le match le plus récent (en haut), sans en sauter. « Max » = plus longue série dans l'historique fourni (${n1} / ${n2} matchs).</p>
+   <ul class="txt"><li>${esc(nA)} a marqué dans ${streak(S.A.rows,r=>r.gf>=1)[0]} match(s) consécutif(s), ${esc(nB)} dans ${streak(S.B.rows,r=>r.gf>=1)[0]}.</li>
+   <li>${esc(nA)} a encaissé dans ${P(1-a.cs/a.n)} % de ses matchs, ${esc(nB)} dans ${P(1-b.cs/b.n)} %.</li></ul>
+   <p class="muted">Attention : ces séries concernent des adversaires différents. Elles n'indiquent pas que les deux équipes marqueront l'une contre l'autre.</p></div>`;
+
+  if(status==='Données insuffisantes'||status==='Données incertaines'){
+    h+=`<h2>Prédictions</h2><p class="muted">Prédiction non lancée : ${flags?'des lignes signalées restent à corriger ou à confirmer.':'il faut au moins 5 matchs par équipe pour une estimation raisonnable.'}</p>`;
+    $('#out').innerHTML=h;return;
+  }
+  const m=predict(a,b,home),ph=P(m.a),pb=P(m.b),pd=100-ph-pb,bt=P(m.btts);
+  h+=`<h2>Prédictions du prochain match</h2><div class="card"><b>Résultat (1N2)</b>${bar(esc(nA),ph)}${bar('Match nul',pd)}${bar(esc(nB),pb)}
+   <br><b>Les deux équipes marquent</b>${bar('Oui',bt)}${bar('Non',100-bt)}
+   <br><b>Total de buts</b>${[0.5,1.5,2.5,3.5].map(t=>{const o=P(m.ov(t));return bar('Plus de '+String(t).replace('.',','),o)+bar('Moins de '+String(t).replace('.',','),100-o)}).join('')}
+   <br><b>Scores exacts les plus probables</b><p>${m.top.map(s=>`<span class="badge ok" style="margin:2px">${s[0]}-${s[1]} · ${(s[2]*100).toFixed(1).replace('.',',')} %</span>`).join('')}</p>
+   <p class="muted">Un score exact est une estimation probabiliste, jamais un résultat prédit avec certitude.</p>
+   <b>Autres estimations</b><ul class="txt"><li>Buts attendus : ${esc(nA)} ${f2(m.la)} · ${esc(nB)} ${f2(m.lb)}</li>
+   <li>${esc(nA)} ne marque aucun but : ${P(m.a0)} % · ${esc(nB)} : ${P(m.b0)} %</li><li>Écart d'au moins 2 buts : ${P(m.m2)} %</li>
+   <li>Marque en premier : ${esc(nA)} ${P(m.la/(m.la+m.lb)*(1-m.p00))} % · ${esc(nB)} ${P(m.lb/(m.la+m.lb)*(1-m.p00))} % · aucun but ${P(m.p00)} %</li></ul></div>`;
+  const wA=P(a.n/(a.n+K)),wB=P(b.n/(b.n+K));
+  h+=`<h2>Justification des estimations</h2><div class="card"><ul class="txt">
+   <li><b>Buts attendus</b> : pour ${esc(nA)}, moyenne entre son attaque (${f2(a.agf)} but/match) et la défense de ${esc(nB)} (${f2(b.aga)} encaissé/match). Même calcul inversé pour ${esc(nB)}.</li>
+   <li><b>Prudence</b> : chaque moyenne est ramenée vers une moyenne générale de ${f2(PRIOR)} but par équipe et par match. Poids des données réelles : ${wA} % (${esc(nA)}, ${n1} matchs) et ${wB} % (${esc(nB)}, ${n2} matchs).</li>
+   <li><b>Domicile</b> : ${home==='?'?'non précisé, aucun ajustement.':'ajustement modéré supposé (+10 % de buts attendus à domicile, −10 % à l\'extérieur). C\'est une hypothèse, pas une mesure tirée de vos captures.'}</li>
+   <li><b>1N2, BTTS, totaux, scores</b> : tous calculés à partir de la même loi de Poisson (buts de chaque équipe supposés indépendants), donc cohérents entre eux : chaque paire d'issues complémentaires totalise 100 %.</li>
+   <li><b>BTTS</b> : ${bt} % vient des buts attendus (${f2(m.la)} et ${f2(m.lb)}), pas des séries brutes. Historique : ${esc(nA)} a marqué et encaissé dans ${a.btts}/${a.n} matchs, ${esc(nB)} dans ${b.btts}/${b.n}.</li></ul></div>
+   <h2>Incertitude</h2><div class="card"><ul class="txt">
+   <li>Données utilisées : ${n1} matchs (A) et ${n2} matchs (B), tels que corrigés par vous.</li>
+   <li>Non pris en compte : niveau des adversaires, compétition, blessures, suspensions, enjeu, confrontations directes.</li>
+   <li>Limite du modèle : la loi de Poisson tend à sous-estimer légèrement les matchs nuls.</li>
+   <li>Niveau de confiance du modèle : non mesuré (aucun historique de prédictions validées dans cette version). Une probabilité de résultat n'est pas un niveau de confiance.</li>
+   <li>Aucun résultat n'est garanti.</li></ul></div>`;
+  $('#out').innerHTML=h;$('#out').scrollIntoView({behavior:'smooth'});
+};
+render();
+</script>
+</body>
+</html>
