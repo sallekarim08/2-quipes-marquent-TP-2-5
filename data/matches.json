@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T21:35:22.787Z",
+  "updatedAt": "2026-10-05T00:21:47.924Z",
   "teams": [
     {
       "name": "Liverpool",
@@ -3129,6 +3129,43 @@
       "bttsOver25": false
     },
     {
+      "league": "Premier League",
+      "home": "Tottenham",
+      "away": "Coventry City",
+      "date": "2026-10-19T19:00:00Z",
+      "home_p": {
+        "name": "Tottenham",
+        "league": "Premier League",
+        "n": 8,
+        "avgScored": 0.63,
+        "avgConceded": 1.38,
+        "avgGoalsMatch": 2,
+        "pctScored": 50,
+        "pctConceded": 63,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Coventry City",
+        "league": "Premier League",
+        "n": 5,
+        "avgScored": 0.2,
+        "avgConceded": 2,
+        "avgGoalsMatch": 2.2,
+        "pctScored": 20,
+        "pctConceded": 80,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
+    },
+    {
       "league": "La Liga",
       "home": "Málaga",
       "away": "Espanyol",
@@ -3832,6 +3869,43 @@
       "bttsOver25": true
     },
     {
+      "league": "La Liga",
+      "home": "Getafe",
+      "away": "Rayo Vallecano",
+      "date": "2026-10-19T19:00:00Z",
+      "home_p": {
+        "name": "Getafe",
+        "league": "La Liga",
+        "n": 11,
+        "avgScored": 0.73,
+        "avgConceded": 0.82,
+        "avgGoalsMatch": 1.55,
+        "pctScored": 55,
+        "pctConceded": 64,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Rayo Vallecano",
+        "league": "La Liga",
+        "n": 11,
+        "avgScored": 1.55,
+        "avgConceded": 1.73,
+        "avgGoalsMatch": 3.27,
+        "pctScored": 100,
+        "pctConceded": 91,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": true,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
+    },
+    {
       "league": "Serie A",
       "home": "Genoa",
       "away": "Fiorentina",
@@ -4496,6 +4570,80 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": false
+    },
+    {
+      "league": "Serie A",
+      "home": "Monza",
+      "away": "Cagliari",
+      "date": "2026-10-19T16:30:00Z",
+      "home_p": {
+        "name": "Monza",
+        "league": "Serie A",
+        "n": 5,
+        "avgScored": 1.6,
+        "avgConceded": 2.4,
+        "avgGoalsMatch": 4,
+        "pctScored": 100,
+        "pctConceded": 100,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": true,
+        "encaisseToujours": true
+      },
+      "away_p": {
+        "name": "Cagliari",
+        "league": "Serie A",
+        "n": 8,
+        "avgScored": 1.13,
+        "avgConceded": 0.75,
+        "avgGoalsMatch": 1.88,
+        "pctScored": 75,
+        "pctConceded": 63,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
+      "league": "Serie A",
+      "home": "Parma",
+      "away": "Torino",
+      "date": "2026-10-19T18:45:00Z",
+      "home_p": {
+        "name": "Parma",
+        "league": "Serie A",
+        "n": 8,
+        "avgScored": 0.88,
+        "avgConceded": 1.38,
+        "avgGoalsMatch": 2.25,
+        "pctScored": 63,
+        "pctConceded": 88,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Torino",
+        "league": "Serie A",
+        "n": 8,
+        "avgScored": 1.25,
+        "avgConceded": 1.63,
+        "avgGoalsMatch": 2.88,
+        "pctScored": 88,
+        "pctConceded": 100,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": true
     },
     {
       "league": "Bundesliga",
@@ -6607,6 +6755,43 @@
       "bttsOver25": false
     },
     {
+      "league": "Primeira Liga",
+      "home": "Braga",
+      "away": "Gil Vicente",
+      "date": "2026-10-19T19:15:00Z",
+      "home_p": {
+        "name": "Braga",
+        "league": "Primeira Liga",
+        "n": 8,
+        "avgScored": 1.38,
+        "avgConceded": 1.13,
+        "avgGoalsMatch": 2.5,
+        "pctScored": 88,
+        "pctConceded": 63,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Gil Vicente",
+        "league": "Primeira Liga",
+        "n": 8,
+        "avgScored": 0.75,
+        "avgConceded": 1.38,
+        "avgGoalsMatch": 2.13,
+        "pctScored": 63,
+        "pctConceded": 63,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
+    },
+    {
       "league": "Brasileirão",
       "home": "Bragantino",
       "away": "Mirassol",
@@ -7672,6 +7857,43 @@
         "pctConceded": 71,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
+      "league": "Brasileirão",
+      "home": "Corinthians",
+      "away": "Vitória",
+      "date": "2026-10-19T23:00:00Z",
+      "home_p": {
+        "name": "Corinthians",
+        "league": "Brasileirão",
+        "n": 14,
+        "avgScored": 1.36,
+        "avgConceded": 1.36,
+        "avgGoalsMatch": 2.71,
+        "pctScored": 86,
+        "pctConceded": 71,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Vitória",
+        "league": "Brasileirão",
+        "n": 15,
+        "avgScored": 0.8,
+        "avgConceded": 1.6,
+        "avgGoalsMatch": 2.4,
+        "pctScored": 60,
+        "pctConceded": 67,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
         "marqueToujours": false,
         "encaisseToujours": false
       },
