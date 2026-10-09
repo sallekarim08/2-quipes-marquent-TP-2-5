@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T15:16:07.148Z",
+  "updatedAt": "2026-10-09T18:17:19.548Z",
   "teams": [
     {
       "name": "Man City",
@@ -5979,43 +5979,6 @@
     },
     {
       "league": "Eredivisie",
-      "home": "PSV",
-      "away": "Heerenveen",
-      "date": "2026-10-09T18:00:00Z",
-      "home_p": {
-        "name": "PSV",
-        "league": "Eredivisie",
-        "n": 8,
-        "avgScored": 3.63,
-        "avgConceded": 1.38,
-        "avgGoalsMatch": 5,
-        "pctScored": 100,
-        "pctConceded": 100,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": true,
-        "encaisseToujours": true
-      },
-      "away_p": {
-        "name": "Heerenveen",
-        "league": "Eredivisie",
-        "n": 8,
-        "avgScored": 1.38,
-        "avgConceded": 1.13,
-        "avgGoalsMatch": 2.5,
-        "pctScored": 63,
-        "pctConceded": 50,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Eredivisie",
       "home": "Go Ahead",
       "away": "Sparta",
       "date": "2026-10-10T14:30:00Z",
@@ -6677,43 +6640,6 @@
         "encaisseToujours": false
       },
       "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": false
-    },
-    {
-      "league": "Primeira Liga",
-      "home": "Moreirense",
-      "away": "Gil Vicente",
-      "date": "2026-10-09T17:45:00Z",
-      "home_p": {
-        "name": "Moreirense",
-        "league": "Primeira Liga",
-        "n": 8,
-        "avgScored": 1,
-        "avgConceded": 1.75,
-        "avgGoalsMatch": 2.75,
-        "pctScored": 63,
-        "pctConceded": 75,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Gil Vicente",
-        "league": "Primeira Liga",
-        "n": 7,
-        "avgScored": 0.71,
-        "avgConceded": 1.14,
-        "avgGoalsMatch": 1.86,
-        "pctScored": 57,
-        "pctConceded": 57,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": false
     },
