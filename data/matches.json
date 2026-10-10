@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T06:18:09.671Z",
+  "updatedAt": "2026-10-10T09:14:29.668Z",
   "teams": [
     {
       "name": "Man City",
@@ -7274,43 +7274,6 @@
     },
     {
       "league": "Primeira Liga",
-      "home": "Casa Pia",
-      "away": "Santa Clara",
-      "date": "2026-10-10T14:30:00Z",
-      "home_p": {
-        "name": "Casa Pia",
-        "league": "Primeira Liga",
-        "n": 8,
-        "avgScored": 0.5,
-        "avgConceded": 2.13,
-        "avgGoalsMatch": 2.63,
-        "pctScored": 38,
-        "pctConceded": 88,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Santa Clara",
-        "league": "Primeira Liga",
-        "n": 8,
-        "avgScored": 1.38,
-        "avgConceded": 0.63,
-        "avgGoalsMatch": 2,
-        "pctScored": 75,
-        "pctConceded": 50,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
-      "certainGoal": false,
-      "bttsOver25": false
-    },
-    {
-      "league": "Primeira Liga",
       "home": "Marítimo",
       "away": "Porto",
       "date": "2026-10-10T17:00:00Z",
@@ -7345,6 +7308,43 @@
       "attackVsLeaky": true,
       "certainGoal": false,
       "bttsOver25": true
+    },
+    {
+      "league": "Primeira Liga",
+      "home": "Casa Pia",
+      "away": "Santa Clara",
+      "date": "2026-10-10T19:30:00Z",
+      "home_p": {
+        "name": "Casa Pia",
+        "league": "Primeira Liga",
+        "n": 8,
+        "avgScored": 0.5,
+        "avgConceded": 2.13,
+        "avgGoalsMatch": 2.63,
+        "pctScored": 38,
+        "pctConceded": 88,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Santa Clara",
+        "league": "Primeira Liga",
+        "n": 8,
+        "avgScored": 1.38,
+        "avgConceded": 0.63,
+        "avgGoalsMatch": 2,
+        "pctScored": 75,
+        "pctConceded": 50,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
     },
     {
       "league": "Primeira Liga",
