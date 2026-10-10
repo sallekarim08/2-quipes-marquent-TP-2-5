@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T09:14:29.668Z",
+  "updatedAt": "2026-10-10T12:17:05.735Z",
   "teams": [
     {
       "name": "Man City",
@@ -2427,43 +2427,6 @@
   "upcoming": [
     {
       "league": "Premier League",
-      "home": "Arsenal",
-      "away": "Leeds United",
-      "date": "2026-10-10T11:30:00Z",
-      "home_p": {
-        "name": "Arsenal",
-        "league": "Premier League",
-        "n": 7,
-        "avgScored": 1.57,
-        "avgConceded": 0.71,
-        "avgGoalsMatch": 2.29,
-        "pctScored": 86,
-        "pctConceded": 43,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Leeds United",
-        "league": "Premier League",
-        "n": 7,
-        "avgScored": 1.14,
-        "avgConceded": 0.86,
-        "avgGoalsMatch": 2,
-        "pctScored": 71,
-        "pctConceded": 57,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
-      "certainGoal": false,
-      "bttsOver25": false
-    },
-    {
-      "league": "Premier League",
       "home": "Sunderland",
       "away": "Brighton Hove",
       "date": "2026-10-10T14:00:00Z",
@@ -3349,43 +3312,6 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": false
-    },
-    {
-      "league": "La Liga",
-      "home": "Rayo Vallecano",
-      "away": "Athletic",
-      "date": "2026-10-10T12:00:00Z",
-      "home_p": {
-        "name": "Rayo Vallecano",
-        "league": "La Liga",
-        "n": 10,
-        "avgScored": 1.6,
-        "avgConceded": 1.8,
-        "avgGoalsMatch": 3.4,
-        "pctScored": 100,
-        "pctConceded": 90,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": true,
-        "marqueToujours": true,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Athletic",
-        "league": "La Liga",
-        "n": 9,
-        "avgScored": 1.11,
-        "avgConceded": 1.44,
-        "avgGoalsMatch": 2.56,
-        "pctScored": 67,
-        "pctConceded": 67,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
-      "certainGoal": false,
-      "bttsOver25": true
     },
     {
       "league": "La Liga",
@@ -8712,117 +8638,6 @@
         "encaisseToujours": false
       },
       "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Championship",
-      "home": "West Brom",
-      "away": "Birmingham",
-      "date": "2026-10-10T11:30:00Z",
-      "home_p": {
-        "name": "West Brom",
-        "league": "Championship",
-        "n": 8,
-        "avgScored": 1.25,
-        "avgConceded": 1,
-        "avgGoalsMatch": 2.25,
-        "pctScored": 88,
-        "pctConceded": 75,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Birmingham",
-        "league": "Championship",
-        "n": 8,
-        "avgScored": 1.5,
-        "avgConceded": 1.38,
-        "avgGoalsMatch": 2.88,
-        "pctScored": 88,
-        "pctConceded": 88,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Championship",
-      "home": "Swansea",
-      "away": "Norwich",
-      "date": "2026-10-10T11:30:00Z",
-      "home_p": {
-        "name": "Swansea",
-        "league": "Championship",
-        "n": 8,
-        "avgScored": 1.63,
-        "avgConceded": 0.75,
-        "avgGoalsMatch": 2.38,
-        "pctScored": 75,
-        "pctConceded": 50,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Norwich",
-        "league": "Championship",
-        "n": 8,
-        "avgScored": 2,
-        "avgConceded": 2.13,
-        "avgGoalsMatch": 4.13,
-        "pctScored": 75,
-        "pctConceded": 100,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": true
-      },
-      "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Championship",
-      "home": "Charlton",
-      "away": "Bristol City",
-      "date": "2026-10-10T11:30:00Z",
-      "home_p": {
-        "name": "Charlton",
-        "league": "Championship",
-        "n": 8,
-        "avgScored": 0.88,
-        "avgConceded": 1.25,
-        "avgGoalsMatch": 2.13,
-        "pctScored": 63,
-        "pctConceded": 63,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Bristol City",
-        "league": "Championship",
-        "n": 8,
-        "avgScored": 1.38,
-        "avgConceded": 1.5,
-        "avgGoalsMatch": 2.88,
-        "pctScored": 75,
-        "pctConceded": 88,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
     },
