@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T10:57:02.986Z",
+  "updatedAt": "2026-10-16T16:16:38.788Z",
   "teams": [
     {
       "name": "Bournemouth",
@@ -926,6 +926,20 @@
       "encaisseToujours": false
     },
     {
+      "name": "M'gladbach",
+      "league": "Bundesliga",
+      "n": 5,
+      "avgScored": 1.4,
+      "avgConceded": 3.6,
+      "avgGoalsMatch": 5,
+      "pctScored": 60,
+      "pctConceded": 100,
+      "marqueBeaucoup": false,
+      "encaisseBeaucoup": true,
+      "marqueToujours": false,
+      "encaisseToujours": true
+    },
+    {
       "name": "Mainz",
       "league": "Bundesliga",
       "n": 5,
@@ -1010,6 +1024,20 @@
       "encaisseToujours": false
     },
     {
+      "name": "1. FC Köln",
+      "league": "Bundesliga",
+      "n": 5,
+      "avgScored": 1.6,
+      "avgConceded": 2,
+      "avgGoalsMatch": 3.6,
+      "pctScored": 100,
+      "pctConceded": 100,
+      "marqueBeaucoup": true,
+      "encaisseBeaucoup": true,
+      "marqueToujours": true,
+      "encaisseToujours": true
+    },
+    {
       "name": "Hoffenheim",
       "league": "Bundesliga",
       "n": 5,
@@ -1052,6 +1080,20 @@
       "encaisseToujours": true
     },
     {
+      "name": "Freiburg",
+      "league": "Bundesliga",
+      "n": 5,
+      "avgScored": 2.8,
+      "avgConceded": 0.8,
+      "avgGoalsMatch": 3.6,
+      "pctScored": 100,
+      "pctConceded": 60,
+      "marqueBeaucoup": true,
+      "encaisseBeaucoup": false,
+      "marqueToujours": true,
+      "encaisseToujours": false
+    },
+    {
       "name": "Bremen",
       "league": "Bundesliga",
       "n": 5,
@@ -1077,6 +1119,20 @@
       "marqueBeaucoup": true,
       "encaisseBeaucoup": true,
       "marqueToujours": true,
+      "encaisseToujours": false
+    },
+    {
+      "name": "Schalke",
+      "league": "Bundesliga",
+      "n": 5,
+      "avgScored": 0.8,
+      "avgConceded": 1.2,
+      "avgGoalsMatch": 2,
+      "pctScored": 40,
+      "pctConceded": 60,
+      "marqueBeaucoup": false,
+      "encaisseBeaucoup": false,
+      "marqueToujours": false,
       "encaisseToujours": false
     },
     {
@@ -5077,6 +5133,43 @@
     },
     {
       "league": "Bundesliga",
+      "home": "Frankfurt",
+      "away": "1. FC Köln",
+      "date": "2026-10-16T18:30:00Z",
+      "home_p": {
+        "name": "Frankfurt",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 1.8,
+        "avgConceded": 3.2,
+        "avgGoalsMatch": 5,
+        "pctScored": 80,
+        "pctConceded": 100,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "away_p": {
+        "name": "1. FC Köln",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 1.6,
+        "avgConceded": 2,
+        "avgGoalsMatch": 3.6,
+        "pctScored": 100,
+        "pctConceded": 100,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": true,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": true,
+      "certainGoal": true,
+      "bttsOver25": true
+    },
+    {
+      "league": "Bundesliga",
       "home": "Union Berlin",
       "away": "Dortmund",
       "date": "2026-10-17T13:30:00Z",
@@ -5225,6 +5318,43 @@
     },
     {
       "league": "Bundesliga",
+      "home": "Schalke",
+      "away": "Mainz",
+      "date": "2026-10-17T13:30:00Z",
+      "home_p": {
+        "name": "Schalke",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 0.8,
+        "avgConceded": 1.2,
+        "avgGoalsMatch": 2,
+        "pctScored": 40,
+        "pctConceded": 60,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Mainz",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 2.6,
+        "avgConceded": 2,
+        "avgGoalsMatch": 4.6,
+        "pctScored": 80,
+        "pctConceded": 60,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
+    },
+    {
+      "league": "Bundesliga",
       "home": "Bayern",
       "away": "RB Leipzig",
       "date": "2026-10-17T16:30:00Z",
@@ -5257,6 +5387,117 @@
         "encaisseToujours": false
       },
       "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
+      "league": "Bundesliga",
+      "home": "Leverkusen",
+      "away": "Freiburg",
+      "date": "2026-10-18T13:30:00Z",
+      "home_p": {
+        "name": "Leverkusen",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 2.8,
+        "avgConceded": 1.6,
+        "avgGoalsMatch": 4.4,
+        "pctScored": 100,
+        "pctConceded": 60,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": true,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Freiburg",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 2.8,
+        "avgConceded": 0.8,
+        "avgGoalsMatch": 3.6,
+        "pctScored": 100,
+        "pctConceded": 60,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": false,
+        "marqueToujours": true,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": true,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
+      "league": "Bundesliga",
+      "home": "M'gladbach",
+      "away": "Hoffenheim",
+      "date": "2026-10-18T15:30:00Z",
+      "home_p": {
+        "name": "M'gladbach",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 1.4,
+        "avgConceded": 3.6,
+        "avgGoalsMatch": 5,
+        "pctScored": 60,
+        "pctConceded": 100,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "away_p": {
+        "name": "Hoffenheim",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 1.8,
+        "avgConceded": 2.6,
+        "avgGoalsMatch": 4.4,
+        "pctScored": 100,
+        "pctConceded": 100,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": true,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": true,
+      "certainGoal": true,
+      "bttsOver25": true
+    },
+    {
+      "league": "Bundesliga",
+      "home": "Stuttgart",
+      "away": "M'gladbach",
+      "date": "2026-10-23T18:30:00Z",
+      "home_p": {
+        "name": "Stuttgart",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 1.6,
+        "avgConceded": 1.8,
+        "avgGoalsMatch": 3.4,
+        "pctScored": 80,
+        "pctConceded": 80,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "M'gladbach",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 1.4,
+        "avgConceded": 3.6,
+        "avgGoalsMatch": 5,
+        "pctScored": 60,
+        "pctConceded": 100,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": true,
       "certainGoal": false,
       "bttsOver25": true
     },
@@ -5296,6 +5537,43 @@
       "attackVsLeaky": true,
       "certainGoal": false,
       "bttsOver25": true
+    },
+    {
+      "league": "Bundesliga",
+      "home": "1. FC Köln",
+      "away": "Schalke",
+      "date": "2026-10-24T13:30:00Z",
+      "home_p": {
+        "name": "1. FC Köln",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 1.6,
+        "avgConceded": 2,
+        "avgGoalsMatch": 3.6,
+        "pctScored": 100,
+        "pctConceded": 100,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": true,
+        "encaisseToujours": true
+      },
+      "away_p": {
+        "name": "Schalke",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 0.8,
+        "avgConceded": 1.2,
+        "avgGoalsMatch": 2,
+        "pctScored": 40,
+        "pctConceded": 60,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
     },
     {
       "league": "Bundesliga",
@@ -5480,6 +5758,43 @@
       },
       "attackVsLeaky": true,
       "certainGoal": true,
+      "bttsOver25": true
+    },
+    {
+      "league": "Bundesliga",
+      "home": "Freiburg",
+      "away": "Bayern",
+      "date": "2026-10-25T16:30:00Z",
+      "home_p": {
+        "name": "Freiburg",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 2.8,
+        "avgConceded": 0.8,
+        "avgGoalsMatch": 3.6,
+        "pctScored": 100,
+        "pctConceded": 60,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": false,
+        "marqueToujours": true,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Bayern",
+        "league": "Bundesliga",
+        "n": 5,
+        "avgScored": 3.2,
+        "avgConceded": 0.8,
+        "avgGoalsMatch": 4,
+        "pctScored": 80,
+        "pctConceded": 60,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
       "bttsOver25": true
     },
     {
