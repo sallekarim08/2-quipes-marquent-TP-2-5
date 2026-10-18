@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T03:32:20.351Z",
+  "updatedAt": "2026-10-18T10:34:58.829Z",
   "teams": [
     {
       "name": "Sunderland",
@@ -7128,43 +7128,6 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
-    },
-    {
-      "league": "Eredivisie",
-      "home": "Zwolle",
-      "away": "Go Ahead",
-      "date": "2026-10-18T10:15:00Z",
-      "home_p": {
-        "name": "Zwolle",
-        "league": "Eredivisie",
-        "n": 8,
-        "avgScored": 0.75,
-        "avgConceded": 2.63,
-        "avgGoalsMatch": 3.38,
-        "pctScored": 50,
-        "pctConceded": 88,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Go Ahead",
-        "league": "Eredivisie",
-        "n": 8,
-        "avgScored": 2.38,
-        "avgConceded": 2.13,
-        "avgGoalsMatch": 4.5,
-        "pctScored": 100,
-        "pctConceded": 100,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": true,
-        "marqueToujours": true,
-        "encaisseToujours": true
-      },
-      "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": false
     },
     {
       "league": "Eredivisie",
