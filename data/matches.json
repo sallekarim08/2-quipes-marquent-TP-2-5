@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T21:19:37.151Z",
+  "updatedAt": "2026-10-23T03:48:29.410Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -1850,34 +1850,6 @@
       "encaisseToujours": false
     },
     {
-      "name": "Coritiba",
-      "league": "Brasileirão",
-      "n": 15,
-      "avgScored": 1.13,
-      "avgConceded": 2,
-      "avgGoalsMatch": 3.13,
-      "pctScored": 60,
-      "pctConceded": 93,
-      "marqueBeaucoup": false,
-      "encaisseBeaucoup": true,
-      "marqueToujours": false,
-      "encaisseToujours": false
-    },
-    {
-      "name": "Bahia",
-      "league": "Brasileirão",
-      "n": 16,
-      "avgScored": 1.44,
-      "avgConceded": 1.25,
-      "avgGoalsMatch": 2.69,
-      "pctScored": 75,
-      "pctConceded": 69,
-      "marqueBeaucoup": false,
-      "encaisseBeaucoup": false,
-      "marqueToujours": false,
-      "encaisseToujours": false
-    },
-    {
       "name": "Paranaense",
       "league": "Brasileirão",
       "n": 14,
@@ -1917,6 +1889,34 @@
       "marqueBeaucoup": true,
       "encaisseBeaucoup": false,
       "marqueToujours": true,
+      "encaisseToujours": false
+    },
+    {
+      "name": "Coritiba",
+      "league": "Brasileirão",
+      "n": 14,
+      "avgScored": 1,
+      "avgConceded": 2,
+      "avgGoalsMatch": 3,
+      "pctScored": 57,
+      "pctConceded": 93,
+      "marqueBeaucoup": false,
+      "encaisseBeaucoup": true,
+      "marqueToujours": false,
+      "encaisseToujours": false
+    },
+    {
+      "name": "Bahia",
+      "league": "Brasileirão",
+      "n": 15,
+      "avgScored": 1.4,
+      "avgConceded": 1.13,
+      "avgGoalsMatch": 2.53,
+      "pctScored": 73,
+      "pctConceded": 67,
+      "marqueBeaucoup": false,
+      "encaisseBeaucoup": false,
+      "marqueToujours": false,
       "encaisseToujours": false
     },
     {
@@ -3208,6 +3208,43 @@
       "bttsOver25": true
     },
     {
+      "league": "Premier League",
+      "home": "Everton",
+      "away": "Coventry City",
+      "date": "2026-11-06T20:00:00Z",
+      "home_p": {
+        "name": "Everton",
+        "league": "Premier League",
+        "n": 7,
+        "avgScored": 1.14,
+        "avgConceded": 1,
+        "avgGoalsMatch": 2.14,
+        "pctScored": 71,
+        "pctConceded": 57,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Coventry City",
+        "league": "Premier League",
+        "n": 7,
+        "avgScored": 0.86,
+        "avgConceded": 2,
+        "avgGoalsMatch": 2.86,
+        "pctScored": 43,
+        "pctConceded": 86,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
+    },
+    {
       "league": "La Liga",
       "home": "Alavés",
       "away": "Málaga",
@@ -3940,6 +3977,43 @@
         "pctConceded": 67,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
+      "league": "La Liga",
+      "home": "Sevilla FC",
+      "away": "Alavés",
+      "date": "2026-11-06T20:00:00Z",
+      "home_p": {
+        "name": "Sevilla FC",
+        "league": "La Liga",
+        "n": 9,
+        "avgScored": 1.56,
+        "avgConceded": 1.78,
+        "avgGoalsMatch": 3.33,
+        "pctScored": 100,
+        "pctConceded": 78,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": true,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Alavés",
+        "league": "La Liga",
+        "n": 9,
+        "avgScored": 1.44,
+        "avgConceded": 1.11,
+        "avgGoalsMatch": 2.56,
+        "pctScored": 78,
+        "pctConceded": 67,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
         "marqueToujours": false,
         "encaisseToujours": false
       },
@@ -5058,6 +5132,43 @@
       "bttsOver25": false
     },
     {
+      "league": "Serie A",
+      "home": "Venezia FC",
+      "away": "Udinese",
+      "date": "2026-11-06T19:45:00Z",
+      "home_p": {
+        "name": "Venezia FC",
+        "league": "Serie A",
+        "n": 7,
+        "avgScored": 0.86,
+        "avgConceded": 2.29,
+        "avgGoalsMatch": 3.14,
+        "pctScored": 57,
+        "pctConceded": 86,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Udinese",
+        "league": "Serie A",
+        "n": 7,
+        "avgScored": 1.29,
+        "avgConceded": 2.29,
+        "avgGoalsMatch": 3.57,
+        "pctScored": 71,
+        "pctConceded": 100,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
+    },
+    {
       "league": "Bundesliga",
       "home": "Stuttgart",
       "away": "M'gladbach",
@@ -5720,6 +5831,43 @@
         "encaisseToujours": false
       },
       "attackVsLeaky": true,
+      "certainGoal": false,
+      "bttsOver25": false
+    },
+    {
+      "league": "Bundesliga",
+      "home": "HSV",
+      "away": "M'gladbach",
+      "date": "2026-11-06T19:30:00Z",
+      "home_p": {
+        "name": "HSV",
+        "league": "Bundesliga",
+        "n": 6,
+        "avgScored": 1,
+        "avgConceded": 2.5,
+        "avgGoalsMatch": 3.5,
+        "pctScored": 50,
+        "pctConceded": 83,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "M'gladbach",
+        "league": "Bundesliga",
+        "n": 6,
+        "avgScored": 1.33,
+        "avgConceded": 3.33,
+        "avgGoalsMatch": 4.67,
+        "pctScored": 67,
+        "pctConceded": 100,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": false
     },
@@ -6390,6 +6538,43 @@
       "bttsOver25": true
     },
     {
+      "league": "Ligue 1",
+      "home": "Toulouse",
+      "away": "Strasbourg",
+      "date": "2026-11-06T19:45:00Z",
+      "home_p": {
+        "name": "Toulouse",
+        "league": "Ligue 1",
+        "n": 7,
+        "avgScored": 1.71,
+        "avgConceded": 1.57,
+        "avgGoalsMatch": 3.29,
+        "pctScored": 71,
+        "pctConceded": 86,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Strasbourg",
+        "league": "Ligue 1",
+        "n": 7,
+        "avgScored": 1.71,
+        "avgConceded": 2.14,
+        "avgGoalsMatch": 3.86,
+        "pctScored": 86,
+        "pctConceded": 100,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": true,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
       "league": "Eredivisie",
       "home": "Go Ahead",
       "away": "Telstar",
@@ -7054,6 +7239,43 @@
       "attackVsLeaky": true,
       "certainGoal": true,
       "bttsOver25": true
+    },
+    {
+      "league": "Eredivisie",
+      "home": "Willem II",
+      "away": "Zwolle",
+      "date": "2026-11-06T19:00:00Z",
+      "home_p": {
+        "name": "Willem II",
+        "league": "Eredivisie",
+        "n": 9,
+        "avgScored": 1,
+        "avgConceded": 2.89,
+        "avgGoalsMatch": 3.89,
+        "pctScored": 78,
+        "pctConceded": 100,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "away_p": {
+        "name": "Zwolle",
+        "league": "Eredivisie",
+        "n": 9,
+        "avgScored": 1.11,
+        "avgConceded": 2.44,
+        "avgGoalsMatch": 3.56,
+        "pctScored": 56,
+        "pctConceded": 89,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
     },
     {
       "league": "Primeira Liga",
@@ -7722,6 +7944,43 @@
       "bttsOver25": false
     },
     {
+      "league": "Primeira Liga",
+      "home": "Famalicão",
+      "away": "Arouca",
+      "date": "2026-11-06T20:45:00Z",
+      "home_p": {
+        "name": "Famalicão",
+        "league": "Primeira Liga",
+        "n": 8,
+        "avgScored": 1.25,
+        "avgConceded": 1.38,
+        "avgGoalsMatch": 2.63,
+        "pctScored": 75,
+        "pctConceded": 75,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Arouca",
+        "league": "Primeira Liga",
+        "n": 8,
+        "avgScored": 1.38,
+        "avgConceded": 0.88,
+        "avgGoalsMatch": 2.25,
+        "pctScored": 75,
+        "pctConceded": 50,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
+    },
+    {
       "league": "Brasileirão",
       "home": "Cruzeiro",
       "away": "Clube do Remo",
@@ -8002,12 +8261,12 @@
       "away_p": {
         "name": "Bahia",
         "league": "Brasileirão",
-        "n": 16,
-        "avgScored": 1.44,
-        "avgConceded": 1.25,
-        "avgGoalsMatch": 2.69,
-        "pctScored": 75,
-        "pctConceded": 69,
+        "n": 15,
+        "avgScored": 1.4,
+        "avgConceded": 1.13,
+        "avgGoalsMatch": 2.53,
+        "pctScored": 73,
+        "pctConceded": 67,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": false,
         "marqueToujours": false,
@@ -8025,11 +8284,11 @@
       "home_p": {
         "name": "Coritiba",
         "league": "Brasileirão",
-        "n": 15,
-        "avgScored": 1.13,
+        "n": 14,
+        "avgScored": 1,
         "avgConceded": 2,
-        "avgGoalsMatch": 3.13,
-        "pctScored": 60,
+        "avgGoalsMatch": 3,
+        "pctScored": 57,
         "pctConceded": 93,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": true,
@@ -8052,7 +8311,7 @@
       },
       "attackVsLeaky": false,
       "certainGoal": false,
-      "bttsOver25": true
+      "bttsOver25": false
     },
     {
       "league": "Brasileirão",
@@ -8210,12 +8469,12 @@
       "home_p": {
         "name": "Bahia",
         "league": "Brasileirão",
-        "n": 16,
-        "avgScored": 1.44,
-        "avgConceded": 1.25,
-        "avgGoalsMatch": 2.69,
-        "pctScored": 75,
-        "pctConceded": 69,
+        "n": 15,
+        "avgScored": 1.4,
+        "avgConceded": 1.13,
+        "avgGoalsMatch": 2.53,
+        "pctScored": 73,
+        "pctConceded": 67,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": false,
         "marqueToujours": false,
@@ -8432,11 +8691,11 @@
       "home_p": {
         "name": "Coritiba",
         "league": "Brasileirão",
-        "n": 15,
-        "avgScored": 1.13,
+        "n": 14,
+        "avgScored": 1,
         "avgConceded": 2,
-        "avgGoalsMatch": 3.13,
-        "pctScored": 60,
+        "avgGoalsMatch": 3,
+        "pctScored": 57,
         "pctConceded": 93,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": true,
@@ -8459,7 +8718,7 @@
       },
       "attackVsLeaky": false,
       "certainGoal": false,
-      "bttsOver25": true
+      "bttsOver25": false
     },
     {
       "league": "Brasileirão",
@@ -8557,11 +8816,11 @@
       "away_p": {
         "name": "Coritiba",
         "league": "Brasileirão",
-        "n": 15,
-        "avgScored": 1.13,
+        "n": 14,
+        "avgScored": 1,
         "avgConceded": 2,
-        "avgGoalsMatch": 3.13,
-        "pctScored": 60,
+        "avgGoalsMatch": 3,
+        "pctScored": 57,
         "pctConceded": 93,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": true,
@@ -8570,7 +8829,7 @@
       },
       "attackVsLeaky": false,
       "certainGoal": false,
-      "bttsOver25": true
+      "bttsOver25": false
     },
     {
       "league": "Brasileirão",
@@ -8756,6 +9015,80 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": false
+    },
+    {
+      "league": "Brasileirão",
+      "home": "Cruzeiro",
+      "away": "Bahia",
+      "date": "2026-11-06T00:30:00Z",
+      "home_p": {
+        "name": "Cruzeiro",
+        "league": "Brasileirão",
+        "n": 14,
+        "avgScored": 1.93,
+        "avgConceded": 1.36,
+        "avgGoalsMatch": 3.29,
+        "pctScored": 93,
+        "pctConceded": 86,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Bahia",
+        "league": "Brasileirão",
+        "n": 15,
+        "avgScored": 1.4,
+        "avgConceded": 1.13,
+        "avgGoalsMatch": 2.53,
+        "pctScored": 73,
+        "pctConceded": 67,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
+      "league": "Brasileirão",
+      "home": "Vitória",
+      "away": "Fluminense",
+      "date": "2026-11-06T23:00:00Z",
+      "home_p": {
+        "name": "Vitória",
+        "league": "Brasileirão",
+        "n": 15,
+        "avgScored": 0.93,
+        "avgConceded": 1.53,
+        "avgGoalsMatch": 2.47,
+        "pctScored": 67,
+        "pctConceded": 67,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Fluminense",
+        "league": "Brasileirão",
+        "n": 14,
+        "avgScored": 1.57,
+        "avgConceded": 1.21,
+        "avgGoalsMatch": 2.79,
+        "pctScored": 86,
+        "pctConceded": 79,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": true
     },
     {
       "league": "Championship",
@@ -10082,6 +10415,43 @@
         "pctConceded": 82,
         "marqueBeaucoup": true,
         "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
+      "league": "Championship",
+      "home": "Derby County",
+      "away": "Bolton",
+      "date": "2026-11-06T20:00:00Z",
+      "home_p": {
+        "name": "Derby County",
+        "league": "Championship",
+        "n": 11,
+        "avgScored": 0.82,
+        "avgConceded": 1.82,
+        "avgGoalsMatch": 2.64,
+        "pctScored": 64,
+        "pctConceded": 91,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Bolton",
+        "league": "Championship",
+        "n": 11,
+        "avgScored": 1.36,
+        "avgConceded": 1.64,
+        "avgGoalsMatch": 3,
+        "pctScored": 64,
+        "pctConceded": 73,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
         "marqueToujours": false,
         "encaisseToujours": false
       },
