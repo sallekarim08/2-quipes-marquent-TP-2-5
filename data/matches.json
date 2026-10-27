@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T08:45:32.196Z",
+  "updatedAt": "2026-10-27T15:13:04.924Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -5762,46 +5762,9 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Lille",
-      "away": "RC Lens",
-      "date": "2026-10-30T20:05:00Z",
-      "home_p": {
-        "name": "Lille",
-        "league": "Ligue 1",
-        "n": 8,
-        "avgScored": 1.38,
-        "avgConceded": 0.75,
-        "avgGoalsMatch": 2.13,
-        "pctScored": 100,
-        "pctConceded": 50,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": false,
-        "marqueToujours": true,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "RC Lens",
-        "league": "Ligue 1",
-        "n": 8,
-        "avgScored": 2,
-        "avgConceded": 1.5,
-        "avgGoalsMatch": 3.5,
-        "pctScored": 88,
-        "pctConceded": 100,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": true
-      },
-      "attackVsLeaky": false,
-      "certainGoal": true,
-      "bttsOver25": true
-    },
-    {
-      "league": "Ligue 1",
       "home": "Nice",
       "away": "Stade Rennais",
-      "date": "2026-10-31T16:15:00Z",
+      "date": "2026-10-30T18:00:00Z",
       "home_p": {
         "name": "Nice",
         "league": "Ligue 1",
@@ -5836,67 +5799,30 @@
     },
     {
       "league": "Ligue 1",
-      "home": "Olympique Lyon",
-      "away": "Angers SCO",
-      "date": "2026-10-31T19:45:00Z",
+      "home": "Lille",
+      "away": "RC Lens",
+      "date": "2026-10-30T20:05:00Z",
       "home_p": {
-        "name": "Olympique Lyon",
+        "name": "Lille",
         "league": "Ligue 1",
         "n": 8,
-        "avgScored": 1.63,
-        "avgConceded": 0.88,
-        "avgGoalsMatch": 2.5,
-        "pctScored": 75,
-        "pctConceded": 63,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Angers SCO",
-        "league": "Ligue 1",
-        "n": 8,
-        "avgScored": 1.13,
-        "avgConceded": 1.88,
-        "avgGoalsMatch": 3,
-        "pctScored": 63,
-        "pctConceded": 63,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Ligue 1",
-      "home": "Lorient",
-      "away": "Brest",
-      "date": "2026-10-31T19:45:00Z",
-      "home_p": {
-        "name": "Lorient",
-        "league": "Ligue 1",
-        "n": 8,
-        "avgScored": 0.88,
+        "avgScored": 1.38,
         "avgConceded": 0.75,
-        "avgGoalsMatch": 1.63,
-        "pctScored": 75,
-        "pctConceded": 38,
+        "avgGoalsMatch": 2.13,
+        "pctScored": 100,
+        "pctConceded": 50,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": false,
-        "marqueToujours": false,
+        "marqueToujours": true,
         "encaisseToujours": false
       },
       "away_p": {
-        "name": "Brest",
+        "name": "RC Lens",
         "league": "Ligue 1",
         "n": 8,
-        "avgScored": 1.75,
+        "avgScored": 2,
         "avgConceded": 1.5,
-        "avgGoalsMatch": 3.25,
+        "avgGoalsMatch": 3.5,
         "pctScored": 88,
         "pctConceded": 100,
         "marqueBeaucoup": true,
@@ -5905,8 +5831,8 @@
         "encaisseToujours": true
       },
       "attackVsLeaky": false,
-      "certainGoal": false,
-      "bttsOver25": false
+      "certainGoal": true,
+      "bttsOver25": true
     },
     {
       "league": "Ligue 1",
@@ -5984,6 +5910,43 @@
     },
     {
       "league": "Ligue 1",
+      "home": "Olympique Lyon",
+      "away": "Angers SCO",
+      "date": "2026-11-01T16:15:00Z",
+      "home_p": {
+        "name": "Olympique Lyon",
+        "league": "Ligue 1",
+        "n": 8,
+        "avgScored": 1.63,
+        "avgConceded": 0.88,
+        "avgGoalsMatch": 2.5,
+        "pctScored": 75,
+        "pctConceded": 63,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Angers SCO",
+        "league": "Ligue 1",
+        "n": 8,
+        "avgScored": 1.13,
+        "avgConceded": 1.88,
+        "avgGoalsMatch": 3,
+        "pctScored": 63,
+        "pctConceded": 63,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": true,
+      "certainGoal": false,
+      "bttsOver25": true
+    },
+    {
+      "league": "Ligue 1",
       "home": "Paris FC",
       "away": "Monaco",
       "date": "2026-11-01T16:15:00Z",
@@ -6055,6 +6018,43 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
+    },
+    {
+      "league": "Ligue 1",
+      "home": "Lorient",
+      "away": "Brest",
+      "date": "2026-11-02T19:45:00Z",
+      "home_p": {
+        "name": "Lorient",
+        "league": "Ligue 1",
+        "n": 8,
+        "avgScored": 0.88,
+        "avgConceded": 0.75,
+        "avgGoalsMatch": 1.63,
+        "pctScored": 75,
+        "pctConceded": 38,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Brest",
+        "league": "Ligue 1",
+        "n": 8,
+        "avgScored": 1.75,
+        "avgConceded": 1.5,
+        "avgGoalsMatch": 3.25,
+        "pctScored": 88,
+        "pctConceded": 100,
+        "marqueBeaucoup": true,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
     },
     {
       "league": "Ligue 1",
