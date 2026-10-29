@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-29T09:33:27.395Z",
+  "updatedAt": "2026-10-29T18:11:17.888Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -3946,43 +3946,6 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
-    },
-    {
-      "league": "Serie A",
-      "home": "Frosinone",
-      "away": "Lecce",
-      "date": "2026-10-29T17:30:00Z",
-      "home_p": {
-        "name": "Frosinone",
-        "league": "Serie A",
-        "n": 8,
-        "avgScored": 2.13,
-        "avgConceded": 1.63,
-        "avgGoalsMatch": 3.75,
-        "pctScored": 75,
-        "pctConceded": 75,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Lecce",
-        "league": "Serie A",
-        "n": 8,
-        "avgScored": 1.13,
-        "avgConceded": 1.75,
-        "avgGoalsMatch": 2.88,
-        "pctScored": 50,
-        "pctConceded": 75,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": false
     },
     {
       "league": "Serie A",
