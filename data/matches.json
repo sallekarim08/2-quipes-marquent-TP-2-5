@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T04:54:26.804Z",
+  "updatedAt": "2026-11-01T12:51:17.879Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -3468,43 +3468,6 @@
     },
     {
       "league": "Serie A",
-      "home": "Como 1907",
-      "away": "Venezia FC",
-      "date": "2026-11-01T11:30:00Z",
-      "home_p": {
-        "name": "Como 1907",
-        "league": "Serie A",
-        "n": 9,
-        "avgScored": 1.89,
-        "avgConceded": 0.89,
-        "avgGoalsMatch": 2.78,
-        "pctScored": 78,
-        "pctConceded": 78,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Venezia FC",
-        "league": "Serie A",
-        "n": 9,
-        "avgScored": 0.67,
-        "avgConceded": 2.11,
-        "avgGoalsMatch": 2.78,
-        "pctScored": 44,
-        "pctConceded": 89,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": false
-    },
-    {
-      "league": "Serie A",
       "home": "Frosinone",
       "away": "Torino",
       "date": "2026-11-01T14:00:00Z",
@@ -5017,43 +4980,6 @@
         "encaisseToujours": false
       },
       "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Eredivisie",
-      "home": "Zwolle",
-      "away": "Den Haag",
-      "date": "2026-11-01T11:15:00Z",
-      "home_p": {
-        "name": "Zwolle",
-        "league": "Eredivisie",
-        "n": 10,
-        "avgScored": 1.1,
-        "avgConceded": 2.3,
-        "avgGoalsMatch": 3.4,
-        "pctScored": 60,
-        "pctConceded": 90,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Den Haag",
-        "league": "Eredivisie",
-        "n": 10,
-        "avgScored": 1.3,
-        "avgConceded": 2.3,
-        "avgGoalsMatch": 3.6,
-        "pctScored": 80,
-        "pctConceded": 100,
-        "marqueBeaucoup": false,
-        "encaisseBeaucoup": true,
-        "marqueToujours": false,
-        "encaisseToujours": true
-      },
-      "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
     },
