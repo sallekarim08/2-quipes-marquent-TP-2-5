@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T00:24:20.883Z",
+  "updatedAt": "2026-11-02T10:41:30.703Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -5574,6 +5574,43 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
+    },
+    {
+      "league": "Brasileirão",
+      "home": "Chapecoense",
+      "away": "Vasco da Gama",
+      "date": "2026-11-14T23:30:00Z",
+      "home_p": {
+        "name": "Chapecoense",
+        "league": "Brasileirão",
+        "n": 15,
+        "avgScored": 1,
+        "avgConceded": 2.2,
+        "avgGoalsMatch": 3.2,
+        "pctScored": 67,
+        "pctConceded": 93,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Vasco da Gama",
+        "league": "Brasileirão",
+        "n": 14,
+        "avgScored": 1.29,
+        "avgConceded": 1.43,
+        "avgGoalsMatch": 2.71,
+        "pctScored": 57,
+        "pctConceded": 79,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
     },
     {
       "league": "Championship",
