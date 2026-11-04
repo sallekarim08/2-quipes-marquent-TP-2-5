@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-04T01:07:03.084Z",
+  "updatedAt": "2026-11-04T10:37:12.246Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -2006,12 +2006,12 @@
     {
       "name": "Coritiba",
       "league": "Brasileirão",
-      "n": 15,
-      "avgScored": 1.07,
-      "avgConceded": 1.73,
-      "avgGoalsMatch": 2.8,
-      "pctScored": 60,
-      "pctConceded": 87,
+      "n": 16,
+      "avgScored": 1,
+      "avgConceded": 1.69,
+      "avgGoalsMatch": 2.69,
+      "pctScored": 56,
+      "pctConceded": 88,
       "marqueBeaucoup": false,
       "encaisseBeaucoup": true,
       "marqueToujours": false,
@@ -2048,12 +2048,12 @@
     {
       "name": "Internacional",
       "league": "Brasileirão",
-      "n": 15,
-      "avgScored": 1.07,
-      "avgConceded": 1.33,
-      "avgGoalsMatch": 2.4,
-      "pctScored": 67,
-      "pctConceded": 80,
+      "n": 16,
+      "avgScored": 1.06,
+      "avgConceded": 1.25,
+      "avgGoalsMatch": 2.31,
+      "pctScored": 69,
+      "pctConceded": 75,
       "marqueBeaucoup": false,
       "encaisseBeaucoup": false,
       "marqueToujours": false,
@@ -5250,12 +5250,12 @@
       "home_p": {
         "name": "Coritiba",
         "league": "Brasileirão",
-        "n": 15,
-        "avgScored": 1.07,
-        "avgConceded": 1.73,
-        "avgGoalsMatch": 2.8,
-        "pctScored": 60,
-        "pctConceded": 87,
+        "n": 16,
+        "avgScored": 1,
+        "avgConceded": 1.69,
+        "avgGoalsMatch": 2.69,
+        "pctScored": 56,
+        "pctConceded": 88,
         "marqueBeaucoup": false,
         "encaisseBeaucoup": true,
         "marqueToujours": false,
@@ -5277,7 +5277,7 @@
       },
       "attackVsLeaky": false,
       "certainGoal": false,
-      "bttsOver25": true
+      "bttsOver25": false
     },
     {
       "league": "Brasileirão",
