@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-08T04:58:00.944Z",
+  "updatedAt": "2026-11-08T12:56:25.282Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -3505,43 +3505,6 @@
     },
     {
       "league": "Serie A",
-      "home": "Napoli",
-      "away": "Lazio",
-      "date": "2026-11-08T11:30:00Z",
-      "home_p": {
-        "name": "Napoli",
-        "league": "Serie A",
-        "n": 10,
-        "avgScored": 1.7,
-        "avgConceded": 1.3,
-        "avgGoalsMatch": 3,
-        "pctScored": 80,
-        "pctConceded": 70,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Lazio",
-        "league": "Serie A",
-        "n": 10,
-        "avgScored": 2.4,
-        "avgConceded": 0.8,
-        "avgGoalsMatch": 3.2,
-        "pctScored": 100,
-        "pctConceded": 60,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": true,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Serie A",
       "home": "Genoa",
       "away": "Milan",
       "date": "2026-11-08T14:00:00Z",
@@ -5017,43 +4980,6 @@
         "encaisseToujours": true
       },
       "attackVsLeaky": true,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Eredivisie",
-      "home": "Heerenveen",
-      "away": "Feyenoord",
-      "date": "2026-11-08T11:15:00Z",
-      "home_p": {
-        "name": "Heerenveen",
-        "league": "Eredivisie",
-        "n": 11,
-        "avgScored": 1.73,
-        "avgConceded": 1.18,
-        "avgGoalsMatch": 2.91,
-        "pctScored": 73,
-        "pctConceded": 55,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "Feyenoord",
-        "league": "Eredivisie",
-        "n": 11,
-        "avgScored": 3,
-        "avgConceded": 1.09,
-        "avgGoalsMatch": 4.09,
-        "pctScored": 100,
-        "pctConceded": 64,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": true,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
     },
