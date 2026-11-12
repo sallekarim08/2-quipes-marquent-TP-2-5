@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T21:48:38.573Z",
+  "updatedAt": "2026-11-12T06:12:57.792Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -5389,6 +5389,43 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
+    },
+    {
+      "league": "Brasileirão",
+      "home": "São Paulo",
+      "away": "Clube do Remo",
+      "date": "2026-11-26T23:00:00Z",
+      "home_p": {
+        "name": "São Paulo",
+        "league": "Brasileirão",
+        "n": 16,
+        "avgScored": 1,
+        "avgConceded": 1.19,
+        "avgGoalsMatch": 2.19,
+        "pctScored": 75,
+        "pctConceded": 75,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": false,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Clube do Remo",
+        "league": "Brasileirão",
+        "n": 16,
+        "avgScored": 1,
+        "avgConceded": 1.75,
+        "avgGoalsMatch": 2.75,
+        "pctScored": 75,
+        "pctConceded": 88,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
     },
     {
       "league": "Championship",
