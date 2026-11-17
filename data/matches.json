@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T21:46:09.702Z",
+  "updatedAt": "2026-11-17T07:00:41.049Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -2870,6 +2870,43 @@
       "attackVsLeaky": false,
       "certainGoal": false,
       "bttsOver25": true
+    },
+    {
+      "league": "Premier League",
+      "home": "Coventry City",
+      "away": "Ipswich Town",
+      "date": "2026-12-01T20:00:00Z",
+      "home_p": {
+        "name": "Coventry City",
+        "league": "Premier League",
+        "n": 10,
+        "avgScored": 1,
+        "avgConceded": 1.9,
+        "avgGoalsMatch": 2.9,
+        "pctScored": 50,
+        "pctConceded": 90,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": false
+      },
+      "away_p": {
+        "name": "Ipswich Town",
+        "league": "Premier League",
+        "n": 10,
+        "avgScored": 1.5,
+        "avgConceded": 2,
+        "avgGoalsMatch": 3.5,
+        "pctScored": 80,
+        "pctConceded": 100,
+        "marqueBeaucoup": false,
+        "encaisseBeaucoup": true,
+        "marqueToujours": false,
+        "encaisseToujours": true
+      },
+      "attackVsLeaky": false,
+      "certainGoal": false,
+      "bttsOver25": false
     },
     {
       "league": "La Liga",
