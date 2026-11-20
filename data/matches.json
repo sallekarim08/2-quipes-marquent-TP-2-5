@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-20T11:01:44.796Z",
+  "updatedAt": "2026-11-20T19:44:02.977Z",
   "teams": [
     {
       "name": "Arsenal",
@@ -5001,43 +5001,6 @@
         "pctScored": 91,
         "pctConceded": 45,
         "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "attackVsLeaky": false,
-      "certainGoal": false,
-      "bttsOver25": true
-    },
-    {
-      "league": "Bundesliga",
-      "home": "Bayern",
-      "away": "1. FC Köln",
-      "date": "2026-11-20T19:30:00Z",
-      "home_p": {
-        "name": "Bayern",
-        "league": "Bundesliga",
-        "n": 9,
-        "avgScored": 3.22,
-        "avgConceded": 1,
-        "avgGoalsMatch": 4.22,
-        "pctScored": 89,
-        "pctConceded": 78,
-        "marqueBeaucoup": true,
-        "encaisseBeaucoup": false,
-        "marqueToujours": false,
-        "encaisseToujours": false
-      },
-      "away_p": {
-        "name": "1. FC Köln",
-        "league": "Bundesliga",
-        "n": 9,
-        "avgScored": 1.11,
-        "avgConceded": 1.56,
-        "avgGoalsMatch": 2.67,
-        "pctScored": 78,
-        "pctConceded": 89,
-        "marqueBeaucoup": false,
         "encaisseBeaucoup": false,
         "marqueToujours": false,
         "encaisseToujours": false
